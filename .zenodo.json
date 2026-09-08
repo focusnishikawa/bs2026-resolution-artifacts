@@ -1,0 +1,26 @@
+{
+  "title": "bs2026-resolution: reproducibility artifacts for the input-resolution and edge-deployment study",
+  "upload_type": "software",
+  "description": "<p>Data manifests, aggregated results and analysis code for a study of input resolution in bird species identification on an edge device (14 input resolutions x 6 architectures x 2 training regimes x 30 seeds = 2,520 checkpoints and 5,040 evaluation conditions, with on-device measurements on an NVIDIA Jetson Orin Nano 8 GB).</p><p>The images themselves are not redistributed. Published instead is one row per image (12,519 rows) giving the source, identifier, URL, SHA-256, group identifier under two grouping rules, and membership in both the image-wise and the group-disjoint split, so that the same image set can be reassembled from the original sources under their own licences. SHA-256 is given for all 12,519 images and 5,756 carry a directly resolvable URL.</p><p>Also included: both split definitions, every aggregate the paper's tables and figures are built from, the training, evaluation, aggregation and figure-generation code, and the Jetson-side scripts for ONNX export, graph splitting, TensorRT builds and latency and accuracy measurement.</p>",
+  "creators": [
+    {
+      "name": "Nishikawa, Takeshi",
+      "affiliation": "Foundation for Computational Science (FOCUS)",
+      "orcid": "0009-0008-4103-1301"
+    }
+  ],
+  "license": "mit",
+  "access_right": "open",
+  "keywords": [
+    "input resolution",
+    "edge inference",
+    "TensorRT",
+    "Jetson Orin Nano",
+    "half-precision inference",
+    "configuration selection",
+    "reproducibility",
+    "bird species identification",
+    "data provenance"
+  ],
+  "language": "eng"
+}

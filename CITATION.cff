@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use these artifacts, please cite them as below."
+title: "bs2026-resolution: reproducibility artifacts for the input-resolution and edge-deployment study"
+type: software
+authors:
+  - family-names: Nishikawa
+    given-names: Takeshi
+    affiliation: "Foundation for Computational Science (FOCUS)"
+    orcid: "https://orcid.org/0009-0008-4103-1301"
+license: MIT
+repository-code: "https://github.com/focusnishikawa/bs2026-resolution-artifacts"
+keywords:
+  - input resolution
+  - edge inference
+  - TensorRT
+  - Jetson Orin Nano
+  - configuration selection
+  - reproducibility
+  - bird species identification
