@@ -1,0 +1,198 @@
+{
+  "total_images": 12519,
+  "counts_by_source_kind": {
+    "macaulay": 57,
+    "own_photo": 4578,
+    "inaturalist": 4865,
+    "legacy_internal": 846,
+    "birds525": 88,
+    "own_video_noid": 339,
+    "wikimedia": 746,
+    "own_video": 1000
+  },
+  "counts_by_source_tag": {
+    "ebird": 30,
+    "v6_root": 4920,
+    "ext_inat_20260504": 4918,
+    "v4_gt": 50,
+    "v5_train_v5_inat": 120,
+    "BIRDS525": 88,
+    "inat_3119": 50,
+    "v5_ds_beta_bird": 496,
+    "ext_wikimedia_20260504": 746,
+    "inat_3160": 50,
+    "inat_3113": 50,
+    "bird_frames_pure_oowashi_20260504": 1000,
+    "v5_gt_critical": 1
+  },
+  "counts_by_species_and_tag": {
+    "Ootaka": {
+      "ebird": 30,
+      "ext_inat_20260504": 909,
+      "ext_wikimedia_20260504": 276,
+      "inat_3113": 50,
+      "v4_gt": 10,
+      "v5_ds_beta_bird": 199,
+      "v5_train_v5_inat": 20
+    },
+    "Chuhi": {
+      "v6_root": 985,
+      "ext_inat_20260504": 194,
+      "v4_gt": 10,
+      "v5_train_v5_inat": 20
+    },
+    "Inuwashi": {
+      "v6_root": 1239,
+      "BIRDS525": 88,
+      "ext_inat_20260504": 1604,
+      "inat_3119": 50,
+      "v4_gt": 10,
+      "v5_ds_beta_bird": 70,
+      "v5_train_v5_inat": 20
+    },
+    "Kumataka": {
+      "v6_root": 1492,
+      "ext_inat_20260504": 70,
+      "ext_wikimedia_20260504": 24,
+      "v4_gt": 10,
+      "v5_train_v5_inat": 20
+    },
+    "Ojirowashi": {
+      "v6_root": 989,
+      "ext_inat_20260504": 2000,
+      "inat_3160": 50,
+      "v4_gt": 10,
+      "v5_train_v5_inat": 20
+    },
+    "Oowashi": {
+      "bird_frames_pure_oowashi_20260504": 1000,
+      "ext_inat_20260504": 141,
+      "ext_wikimedia_20260504": 446,
+      "v6_root": 215,
+      "v5_ds_beta_bird": 227,
+      "v5_gt_critical": 1,
+      "v5_train_v5_inat": 20
+    }
+  },
+  "counts_by_split_and_tag": {
+    "val": {
+      "ebird": 6,
+      "v6_root": 756,
+      "ext_inat_20260504": 716,
+      "v5_train_v5_inat": 12,
+      "BIRDS525": 14,
+      "inat_3119": 8,
+      "v4_gt": 3,
+      "v5_ds_beta_bird": 65,
+      "ext_wikimedia_20260504": 125,
+      "inat_3160": 9,
+      "inat_3113": 8,
+      "bird_frames_pure_oowashi_20260504": 154
+    },
+    "test": {
+      "ebird": 7,
+      "v6_root": 749,
+      "ext_inat_20260504": 725,
+      "v4_gt": 11,
+      "v5_train_v5_inat": 23,
+      "BIRDS525": 9,
+      "inat_3119": 5,
+      "v5_ds_beta_bird": 80,
+      "ext_wikimedia_20260504": 109,
+      "inat_3160": 9,
+      "inat_3113": 9,
+      "bird_frames_pure_oowashi_20260504": 146
+    },
+    "train": {
+      "ebird": 17,
+      "v6_root": 3415,
+      "ext_inat_20260504": 3477,
+      "v4_gt": 36,
+      "v5_train_v5_inat": 85,
+      "BIRDS525": 65,
+      "inat_3119": 37,
+      "v5_ds_beta_bird": 351,
+      "ext_wikimedia_20260504": 512,
+      "inat_3160": 32,
+      "inat_3113": 33,
+      "bird_frames_pure_oowashi_20260504": 700,
+      "v5_gt_critical": 1
+    }
+  },
+  "identifiability": {
+    "with_source_url": 5756,
+    "without_source_url": 6763,
+    "with_sha256": 12519,
+    "without_sha256": 0
+  },
+  "split_sizes": {
+    "image_wise": {
+      "val": 1876,
+      "test": 1882,
+      "train": 8761
+    },
+    "group": {
+      "train": 8763,
+      "val": 1880,
+      "test": 1876
+    }
+  },
+  "group_rule_v1_used_in_experiments": {
+    "image_wise_split": {
+      "groups": 12145,
+      "straddling_groups": 24,
+      "in_straddling_group_train": 260,
+      "sharing_train_train": 260,
+      "in_straddling_group_val": 58,
+      "sharing_train_val": 58,
+      "in_straddling_group_test": 61,
+      "sharing_train_test": 61
+    },
+    "group_split": {
+      "groups": 12145,
+      "straddling_groups": 0,
+      "in_straddling_group_train": 0,
+      "sharing_train_train": 0,
+      "in_straddling_group_val": 0,
+      "sharing_train_val": 0,
+      "in_straddling_group_test": 0,
+      "sharing_train_test": 0
+    }
+  },
+  "group_rule_v2_video_id_aware": {
+    "image_wise_split": {
+      "groups": 11178,
+      "straddling_groups": 57,
+      "in_straddling_group_train": 960,
+      "sharing_train_train": 960,
+      "in_straddling_group_val": 212,
+      "sharing_train_val": 212,
+      "in_straddling_group_test": 207,
+      "sharing_train_test": 207
+    },
+    "group_split": {
+      "groups": 11178,
+      "straddling_groups": 33,
+      "in_straddling_group_train": 677,
+      "sharing_train_train": 677,
+      "in_straddling_group_val": 161,
+      "sharing_train_val": 161,
+      "in_straddling_group_test": 162,
+      "sharing_train_test": 162
+    }
+  },
+  "video_frames": {
+    "videos": 33,
+    "frames": 1000,
+    "frames_per_video_median": 31,
+    "adjacent_gap_seconds": {
+      "min": 0.0,
+      "median": 3.34,
+      "mean": 32.93,
+      "max": 1081.08,
+      "pairs_within_1s": 278,
+      "pairs_within_5s": 542,
+      "pairs": 967
+    }
+  }
+}

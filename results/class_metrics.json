@@ -1,0 +1,154 @@
+{
+ "note": "配備エンジンの全数予測から、シードごとに指標を計算して平均した",
+ "n_test": 1882,
+ "classes": [
+  "Inuwashi",
+  "Ojirowashi",
+  "Oowashi",
+  "Kumataka",
+  "Ootaka",
+  "Chuhi"
+ ],
+ "support": [
+  463,
+  461,
+  308,
+  243,
+  225,
+  182
+ ],
+ "by_config": {
+  "resnet50_r112": {
+   "n_seed": 30,
+   "acc": 0.8980162947219269,
+   "macro_f1": 0.9040360025461712,
+   "balanced_acc": 0.9058728116804423,
+   "recall_by_class": {
+    "Inuwashi": 0.87077033837293,
+    "Ojirowashi": 0.858929862617498,
+    "Oowashi": 0.9597402597402598,
+    "Kumataka": 0.9436213991769548,
+    "Ootaka": 0.8845925925925928,
+    "Chuhi": 0.9175824175824174
+   },
+   "worst_class": "Ojirowashi",
+   "worst_recall": 0.858929862617498,
+   "acc_minus_macro_f1_pt": -0.6019707824244325,
+   "top_confusion": {
+    "true": "Ojirowashi",
+    "pred": "Inuwashi",
+    "count_mean": 36.06666666666667
+   }
+  },
+  "resnet50_r224": {
+   "n_seed": 30,
+   "acc": 0.921342543393553,
+   "macro_f1": 0.9261797568680183,
+   "balanced_acc": 0.9289535832300558,
+   "recall_by_class": {
+    "Inuwashi": 0.89812814974802,
+    "Ojirowashi": 0.8862617498192336,
+    "Oowashi": 0.9654761904761905,
+    "Kumataka": 0.9582990397805212,
+    "Ootaka": 0.9256296296296297,
+    "Chuhi": 0.9399267399267397
+   },
+   "worst_class": "Ojirowashi",
+   "worst_recall": 0.8862617498192336,
+   "acc_minus_macro_f1_pt": -0.4837213474465307,
+   "top_confusion": {
+    "true": "Ojirowashi",
+    "pred": "Inuwashi",
+    "count_mean": 31.0
+   }
+  },
+  "vit_small_r224": {
+   "n_seed": 30,
+   "acc": 0.8800566772936593,
+   "macro_f1": 0.8877325773240808,
+   "balanced_acc": 0.9001602349501011,
+   "recall_by_class": {
+    "Inuwashi": 0.7890568754499641,
+    "Ojirowashi": 0.8339840925524222,
+    "Oowashi": 0.9504329004329002,
+    "Kumataka": 0.9403292181069958,
+    "Ootaka": 0.9714074074074074,
+    "Chuhi": 0.9157509157509156
+   },
+   "worst_class": "Inuwashi",
+   "worst_recall": 0.7890568754499641,
+   "acc_minus_macro_f1_pt": -0.7675900030421512,
+   "top_confusion": {
+    "true": "Inuwashi",
+    "pred": "Ootaka",
+    "count_mean": 57.9
+   }
+  },
+  "dinov2_l_r64": {
+   "n_seed": 29,
+   "acc": 0.9307046795412071,
+   "macro_f1": 0.9360957282405589,
+   "balanced_acc": 0.9364631508369505,
+   "recall_by_class": {
+    "Inuwashi": 0.9088403962165785,
+    "Ojirowashi": 0.9058269130077045,
+    "Oowashi": 0.9721227048813255,
+    "Kumataka": 0.9533134667234282,
+    "Ootaka": 0.9353256704980843,
+    "Chuhi": 0.9433497536945811
+   },
+   "worst_class": "Ojirowashi",
+   "worst_recall": 0.9058269130077045,
+   "acc_minus_macro_f1_pt": -0.5391048699351808,
+   "top_confusion": {
+    "true": "Inuwashi",
+    "pred": "Ojirowashi",
+    "count_mean": 31.620689655172413
+   }
+  },
+  "dinov2_l_r112": {
+   "n_seed": 29,
+   "acc": 0.9573454505478397,
+   "macro_f1": 0.9604801637492347,
+   "balanced_acc": 0.962140608512556,
+   "recall_by_class": {
+    "Inuwashi": 0.9513666492887464,
+    "Ojirowashi": 0.9292392849128583,
+    "Oowashi": 0.980631437527989,
+    "Kumataka": 0.969632467716759,
+    "Ootaka": 0.9713409961685826,
+    "Chuhi": 0.9706328154604015
+   },
+   "worst_class": "Ojirowashi",
+   "worst_recall": 0.9292392849128583,
+   "acc_minus_macro_f1_pt": -0.3134713201395023,
+   "top_confusion": {
+    "true": "Ojirowashi",
+    "pred": "Inuwashi",
+    "count_mean": 17.75862068965517
+   }
+  },
+  "dinov2_l_r144": {
+   "n_seed": 29,
+   "acc": 0.9629521052438711,
+   "macro_f1": 0.9652081694222147,
+   "balanced_acc": 0.9663124821193582,
+   "recall_by_class": {
+    "Inuwashi": 0.9544201981082892,
+    "Ojirowashi": 0.9474904630114447,
+    "Oowashi": 0.978952082400358,
+    "Kumataka": 0.9714772243507875,
+    "Ootaka": 0.974712643678161,
+    "Chuhi": 0.9708222811671083
+   },
+   "worst_class": "Ojirowashi",
+   "worst_recall": 0.9474904630114447,
+   "acc_minus_macro_f1_pt": -0.22560641783435642,
+   "top_confusion": {
+    "true": "Inuwashi",
+    "pred": "Ojirowashi",
+    "count_mean": 14.206896551724139
+   }
+  }
+ }
+}
