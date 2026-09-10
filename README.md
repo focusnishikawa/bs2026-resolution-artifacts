@@ -212,4 +212,25 @@ that the same image set can be reassembled from the original sources under their
 
 ## Citation
 
-The paper is under submission; this section will be updated with the DOI on publication.
+These artifacts are archived on Zenodo. Cite the **concept DOI**, which always resolves to the
+latest version:
+
+> Nishikawa, T. (2026). *bs2026-resolution: reproducibility artifacts for the input-resolution
+> and edge-deployment study*. Zenodo. https://doi.org/10.5281/zenodo.22697995
+
+```bibtex
+@software{bs2026resolution_artifacts,
+  author    = {Nishikawa, Takeshi},
+  title     = {bs2026-resolution: reproducibility artifacts for the
+               input-resolution and edge-deployment study},
+  year      = {2026},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.22697995},
+  url       = {https://doi.org/10.5281/zenodo.22697995}
+}
+```
+
+The DOI of this specific release (v1.0.0) is 10.5281/zenodo.22697996.
+
+The accompanying paper is under submission; this section will be updated with its DOI on
+publication.
