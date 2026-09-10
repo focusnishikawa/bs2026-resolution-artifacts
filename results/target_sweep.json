@@ -4,14 +4,16 @@
  "tkey": "e2e_deploy_ms",
  "step": 0.001,
  "deploy_val_models": [
+  "dinov2_l",
+  "dinov3_l",
   "effb0",
   "mnv4",
   "resnet50",
   "vit_small"
  ],
  "n_target": 176,
- "n_changed": 21,
- "changed_fraction": 0.11931818181818182,
+ "n_changed": 26,
+ "changed_fraction": 0.14772727272727273,
  "spans": [
   {
    "from": 0.814,
@@ -175,7 +177,7 @@
   },
   {
    "from": 0.931,
-   "to": 0.935,
+   "to": 0.932,
    "server": {
     "model": "vit_small",
     "res": 224,
@@ -187,14 +189,14 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 64,
-    "val": 0.935092395167022,
-    "fallback": true,
+    "val": 0.9328725828983163,
+    "fallback": false,
     "time_ms": 9.402,
     "test": 0.9307046795412071
    }
   },
   {
-   "from": 0.936,
+   "from": 0.933,
    "to": 0.938,
    "server": {
     "model": "vit_small",
@@ -207,10 +209,90 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
+   }
+  },
+  {
+   "from": 0.966,
+   "to": 0.966,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9664179104477613,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 160,
+    "val": 0.9668774354826851,
+    "fallback": false,
+    "time_ms": 13.701,
+    "test": 0.9637399684854703
+   }
+  },
+  {
+   "from": 0.967,
+   "to": 0.968,
+   "server": {
+    "model": "dinov2_l",
+    "res": 160,
+    "val": 0.9688343994314143,
+    "fallback": false,
+    "time_ms": 13.701,
+    "test": 0.9637399684854703
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 176,
+    "val": 0.9713440188221454,
+    "fallback": false,
+    "time_ms": 20.754,
+    "test": 0.9692550111766646
+   }
+  },
+  {
+   "from": 0.972,
+   "to": 0.972,
+   "server": {
+    "model": "dinov2_l",
+    "res": 176,
+    "val": 0.9721570717839375,
+    "fallback": false,
+    "time_ms": 20.754,
+    "test": 0.9692550111766646
+   },
+   "deploy": {
+    "model": "dinov3_l",
+    "res": 144,
+    "val": 0.972777736931108,
+    "fallback": false,
+    "time_ms": 24.054,
+    "test": 0.96615852541317
+   }
+  },
+  {
+   "from": 0.975,
+   "to": 0.975,
+   "server": {
+    "model": "dinov2_l",
+    "res": 224,
+    "val": 0.9750888415067519,
+    "fallback": false,
+    "time_ms": 28.234,
+    "test": 0.9700245520172963
+   },
+   "deploy": {
+    "model": "dinov3_l",
+    "res": 192,
+    "val": 0.9751672671127123,
+    "fallback": false,
+    "time_ms": 39.902,
+    "test": 0.9709773168676024
    }
   }
  ],
@@ -2848,8 +2930,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 64,
-    "val": 0.935092395167022,
-    "fallback": true,
+    "val": 0.9328725828983163,
+    "fallback": false,
     "time_ms": 9.402,
     "test": 0.9307046795412071
    },
@@ -2868,8 +2950,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 64,
-    "val": 0.935092395167022,
-    "fallback": true,
+    "val": 0.9328725828983163,
+    "fallback": false,
     "time_ms": 9.402,
     "test": 0.9307046795412071
    },
@@ -2887,11 +2969,11 @@
    },
    "deploy": {
     "model": "dinov2_l",
-    "res": 64,
-    "val": 0.935092395167022,
-    "fallback": true,
-    "time_ms": 9.402,
-    "test": 0.9307046795412071
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
    },
    "same": false
   },
@@ -2907,11 +2989,11 @@
    },
    "deploy": {
     "model": "dinov2_l",
-    "res": 64,
-    "val": 0.935092395167022,
-    "fallback": true,
-    "time_ms": 9.402,
-    "test": 0.9307046795412071
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
    },
    "same": false
   },
@@ -2927,11 +3009,11 @@
    },
    "deploy": {
     "model": "dinov2_l",
-    "res": 64,
-    "val": 0.935092395167022,
-    "fallback": true,
-    "time_ms": 9.402,
-    "test": 0.9307046795412071
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
    },
    "same": false
   },
@@ -2948,8 +3030,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -2968,8 +3050,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -2988,8 +3070,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -3008,8 +3090,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -3028,8 +3110,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -3048,8 +3130,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -3068,8 +3150,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -3088,8 +3170,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -3108,8 +3190,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -3128,8 +3210,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -3148,8 +3230,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -3168,8 +3250,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -3188,8 +3270,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -3208,8 +3290,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -3228,8 +3310,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -3248,8 +3330,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -3268,8 +3350,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -3288,8 +3370,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -3308,8 +3390,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -3328,8 +3410,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -3348,8 +3430,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -3368,8 +3450,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -3388,8 +3470,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -3408,8 +3490,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -3428,8 +3510,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -3448,8 +3530,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -3468,8 +3550,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -3488,8 +3570,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -3508,8 +3590,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -3528,8 +3610,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
+    "val": 0.9653334313653408,
+    "fallback": false,
     "time_ms": 12.701,
     "test": 0.9629521052438711
    },
@@ -3547,13 +3629,13 @@
    },
    "deploy": {
     "model": "dinov2_l",
-    "res": 144,
-    "val": 0.9664179104477613,
-    "fallback": true,
-    "time_ms": 12.701,
-    "test": 0.9629521052438711
+    "res": 160,
+    "val": 0.9668774354826851,
+    "fallback": false,
+    "time_ms": 13.701,
+    "test": 0.9637399684854703
    },
-   "same": true
+   "same": false
   },
   {
    "target": 0.967,
@@ -3567,13 +3649,13 @@
    },
    "deploy": {
     "model": "dinov2_l",
-    "res": 160,
-    "val": 0.9688343994314143,
-    "fallback": true,
-    "time_ms": 13.701,
-    "test": 0.9637399684854703
+    "res": 176,
+    "val": 0.9713440188221454,
+    "fallback": false,
+    "time_ms": 20.754,
+    "test": 0.9692550111766646
    },
-   "same": true
+   "same": false
   },
   {
    "target": 0.968,
@@ -3587,13 +3669,13 @@
    },
    "deploy": {
     "model": "dinov2_l",
-    "res": 160,
-    "val": 0.9688343994314143,
-    "fallback": true,
-    "time_ms": 13.701,
-    "test": 0.9637399684854703
+    "res": 176,
+    "val": 0.9713440188221454,
+    "fallback": false,
+    "time_ms": 20.754,
+    "test": 0.9692550111766646
    },
-   "same": true
+   "same": false
   },
   {
    "target": 0.969,
@@ -3608,8 +3690,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 176,
-    "val": 0.9721570717839375,
-    "fallback": true,
+    "val": 0.9713440188221454,
+    "fallback": false,
     "time_ms": 20.754,
     "test": 0.9692550111766646
    },
@@ -3628,8 +3710,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 176,
-    "val": 0.9721570717839375,
-    "fallback": true,
+    "val": 0.9713440188221454,
+    "fallback": false,
     "time_ms": 20.754,
     "test": 0.9692550111766646
    },
@@ -3648,8 +3730,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 176,
-    "val": 0.9721570717839375,
-    "fallback": true,
+    "val": 0.9713440188221454,
+    "fallback": false,
     "time_ms": 20.754,
     "test": 0.9692550111766646
    },
@@ -3666,14 +3748,14 @@
     "test": 0.9692550111766646
    },
    "deploy": {
-    "model": "dinov2_l",
-    "res": 176,
-    "val": 0.9721570717839375,
-    "fallback": true,
-    "time_ms": 20.754,
-    "test": 0.9692550111766646
+    "model": "dinov3_l",
+    "res": 144,
+    "val": 0.972777736931108,
+    "fallback": false,
+    "time_ms": 24.054,
+    "test": 0.96615852541317
    },
-   "same": true
+   "same": false
   },
   {
    "target": 0.973,
@@ -3688,8 +3770,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 208,
-    "val": 0.974911158493248,
-    "fallback": true,
+    "val": 0.9742298360414675,
+    "fallback": false,
     "time_ms": 24.225,
     "test": 0.973176004983693
    },
@@ -3708,8 +3790,8 @@
    "deploy": {
     "model": "dinov2_l",
     "res": 208,
-    "val": 0.974911158493248,
-    "fallback": true,
+    "val": 0.9742298360414675,
+    "fallback": false,
     "time_ms": 24.225,
     "test": 0.973176004983693
    },
@@ -3726,14 +3808,14 @@
     "test": 0.9700245520172963
    },
    "deploy": {
-    "model": "dinov2_l",
-    "res": 224,
-    "val": 0.9750888415067519,
-    "fallback": true,
-    "time_ms": 28.234,
-    "test": 0.9700245520172963
+    "model": "dinov3_l",
+    "res": 192,
+    "val": 0.9751672671127123,
+    "fallback": false,
+    "time_ms": 39.902,
+    "test": 0.9709773168676024
    },
-   "same": true
+   "same": false
   }
  ]
 }

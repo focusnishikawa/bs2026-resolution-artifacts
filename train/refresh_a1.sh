@@ -12,12 +12,14 @@
 #   A5  構成選択は **validation**、報告は **test** (どちらも配備精度)
 #   A-4 **ViT-L も配備エンジンで測る** (seed 43-71 の 29 本)。そろっていれば報告値に含め、
 #       「ViT-L 級のみサーバ FP32」という例外を解消する
+#   A-5 **ViT-L の val も配備エンジンで測る** (seed 43-71 の 29 本, 2026-09-10 完了)。
+#       そろっていれば構成選択にも配備実測を使い、サーバ FP32 の val への fallback をやめる
 #
 # usage:
 #   bash train/refresh_a1.sh              # 回収から通す
 #   SKIP_FETCH=1 bash train/refresh_a1.sh # 回収済みの CSV で集計だけやり直す
-#   WITH_VITL=0 bash train/refresh_a1.sh  # ViT-L を含めない (従来の挙動)
-#   WITH_VITL=1 bash train/refresh_a1.sh  # そろっていなくても ViT-L を含める (暫定確認用)
+#   WITH_VITL=0 bash train/refresh_a1.sh  # ViT-L を含めない (従来の挙動。test / val とも)
+#   WITH_VITL=1 bash train/refresh_a1.sh  # そろっていなくても ViT-L を含める (暫定確認用。test / val とも)
 set -u
 R="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$R" || exit 1
@@ -83,6 +85,9 @@ if [ "${SKIP_FETCH:-0}" != "1" ]; then
     # ⭐ ViT-L (査読指摘 A-4)。まだ 1 本も無くても失敗させない — A-4 の測定は
     #    CNN 側より後から始まっており、無い間は従来どおりサーバ FP32 で通す。
     bash train/fetch_vitl_preds.sh || echo "   ⚠️ ViT-L の回収に失敗した (A-4 は暫定のまま進む)"
+    # ⭐ ViT-L の val (査読指摘 A-5)。ここも失敗させない — 無い間は optimal_n.py の
+    #    --select-fallback がサーバ FP32 の val へ落として選択を続ける。
+    bash train/fetch_vitl_preds_val.sh || echo "   ⚠️ ViT-L (val) の回収に失敗した (選択はサーバ FP32 の val へ落ちる)"
 else
     echo
     echo "----- 1. 回収はスキップ (SKIP_FETCH=1) -----"
@@ -111,22 +116,31 @@ count_ready() {          # $1 = preds ディレクトリ / $2 = 1 シードあ�
 #    という例外を解消する。そろっていなければ optimal_n.py が従来どおりサーバ FP32 へ落とす。
 # ⚠️ **ViT-L は 29 シード・CNN は 30 シードで母数が違う。**論文にはそう明記すること
 #    (seed 42 の ViT-L は onnx_seeds/ でなく旧 onnx/ 由来で N=32 だけ別経路なので混ぜない)。
-# ⚠️ val 側は ViT-L を測っていない。選択側は --select-fallback がサーバ FP32 の val へ
-#    落とす既存の仕組みのままでよい (S13 で実装済み)。
+# ⭐ val 側も A-5 (2026-09-10 完了) で **seed 43-71 の 29 本**を測った。そろっていれば
+#    構成選択にも配備実測を使い、足りなければ --select-fallback がサーバ FP32 の val へ
+#    落とす (S13 で実装済みの仕組み)。test と val は別々に数える — 片方だけ先にそろう。
 EXP_VITL=29
 LVL=$(count_ready results/preds_vitl_30seed 28)
+LVLV=$(count_ready results/preds_vitl_30seed_val 28)
 VITL_ON=0
+VITL_VAL_ON=0
 echo
-echo "----- 1c. ViT-L の配備精度 (査読指摘 A-4) -----"
-echo "   28 構成そろったシード: $LVL / $EXP_VITL"
+echo "----- 1c. ViT-L の配備精度 (査読指摘 A-4 / A-5) -----"
+echo "   28 構成そろったシード: test $LVL / $EXP_VITL   val $LVLV / $EXP_VITL"
 case "${WITH_VITL:-auto}" in
     0)  echo "   → 含めない (WITH_VITL=0)" ;;
-    1)  VITL_ON=1; echo "   → 含める (WITH_VITL=1 で強制)" ;;
+    1)  VITL_ON=1; VITL_VAL_ON=1; echo "   → 含める (WITH_VITL=1 で強制。test / val とも)" ;;
     *)  if [ "$LVL" -ge "$EXP_VITL" ]; then
-            VITL_ON=1; echo "   → 含める (29 シードそろった)"
+            VITL_ON=1; echo "   → 報告 (test) に含める (29 シードそろった)"
         else
-            echo "   → まだそろっていないので含めない。ViT-L はサーバ FP32 のまま"
+            echo "   → 報告 (test) はまだそろっていないので含めない。ViT-L はサーバ FP32 のまま"
             echo "      (強制するなら WITH_VITL=1。回収は bash train/fetch_vitl_preds.sh)"
+        fi
+        if [ "$LVLV" -ge "$EXP_VITL" ]; then
+            VITL_VAL_ON=1; echo "   → 選択 (val) に含める (29 シードそろった)"
+        else
+            echo "   → 選択 (val) はまだそろっていないので含めない。--select-fallback がサーバ FP32 の val へ落とす"
+            echo "      (回収は bash train/fetch_vitl_preds_val.sh)"
         fi ;;
 esac
 
@@ -148,8 +162,17 @@ rc_t=$?
 
 echo
 echo "----- 2b. 配備精度の集計 (val = 構成選択用, 査読指摘 A5) -----"
-python3 train/collect_deploy_acc.py --preds results/preds_30seed_val \
-    --split val --out results/summary_deploy_val.json
+if [ "$VITL_VAL_ON" = "1" ]; then
+    python3 train/collect_deploy_acc.py --preds results/preds_30seed_val \
+        --split val \
+        --models mnv4 effb0 resnet50 vit_small dinov2_l dinov3_l \
+        --model-preds dinov2_l=results/preds_vitl_30seed_val \
+                      dinov3_l=results/preds_vitl_30seed_val \
+        --out results/summary_deploy_val.json
+else
+    python3 train/collect_deploy_acc.py --preds results/preds_30seed_val \
+        --split val --out results/summary_deploy_val.json
+fi
 rc_v=$?
 
 if [ "$rc_t" -ne 0 ] || [ "$rc_v" -ne 0 ]; then
@@ -168,6 +191,7 @@ echo
 echo "----- 2c. 図の可否判定 (ローカル) -----"
 echo "   56 構成そろったシード: test $LT / $EXP_SEEDS   val $LV / $EXP_SEEDS"
 echo "   ViT-L 28 構成そろったシード: $LVL / $EXP_VITL  (報告値に含める = $VITL_ON)"
+echo "   ViT-L val 28 構成そろったシード: $LVLV / $EXP_VITL  (選択に含める = $VITL_VAL_ON)"
 DONE_OK=0
 if [ "$LT" -ge "$EXP_SEEDS" ] && [ "$LV" -ge "$EXP_SEEDS" ] \
    && [ "$rc_t" -eq 0 ] && [ "$rc_v" -eq 0 ]; then
@@ -182,6 +206,13 @@ if [ "${WITH_VITL:-auto}" != "0" ] && [ "$LVL" -lt "$EXP_VITL" ] && [ "$DONE_OK"
     echo "     このまま図を描くと ViT-L だけサーバ FP32 の図になる。A-4 の測定完了を待つこと"
     echo "     (待たずに CNN だけで描くなら WITH_VITL=0 FORCE_FIGS=1 を明示する)"
     DONE_OK=0
+fi
+# ⚠️ **図のゲート (DONE_OK) は val 側の ViT-L では動かさない。**図は test の summary から
+#    描くので、val が足りなくても図そのものは正しい。ただし選択側だけがサーバ FP32 の
+#    val に落ちている状態は論文の記述と食い違いうるので、必ず見えるように警告する。
+if [ "$VITL_ON" = "1" ] && [ "$VITL_VAL_ON" = "0" ]; then
+    echo "⚠️ 報告 (test) は ViT-L の配備実測を含むが、**選択側はサーバ FP32 fallback のまま** "
+    echo "   (ViT-L val $LVLV / $EXP_VITL)。回収は bash train/fetch_vitl_preds_val.sh"
 fi
 
 # ---- 3. 表とパレートの再計算 ----
@@ -203,11 +234,15 @@ echo "----- 4. 図 2 (パレート) の描き直し -----"
 # ⚠️ PAPER_PDF=1 は付けない。論文は両版とも figs/*.png を参照しており PDF は使わない。
 #    加えて **和文図の PDF 出力は matplotlib backend_pdf が日本語グリフ名を ascii へ
 #    encode できず必ず落ちる** (既存不具合。HEAD でも同じ)。落ちると以降の図が生成されない。
+# ⭐ PARETO_JSON を渡し、図の大きい印を optimal_n.py の validation 選抜パレート集合と
+#    構成上一致させる (S17 が dff56fc で導入した仕組み。渡し忘れると make_figs.py が
+#    test 精度から front を再計算し、キャプション「validation で選抜」と食い違う。
+#    2026-09-10 に実際に踏んだ)。
 if [ "$DONE_OK" = "1" ] || [ "${FORCE_FIGS:-0}" = "1" ]; then
     for lang in ja en; do
         if [ "$lang" = "en" ]; then export FIG_LANG=en; else unset FIG_LANG; fi
-        ACC_JSON=results/summary_deploy.json FT_JSON="$FT" \
-            python3 train/make_figs.py | grep -E "^\[A1\]|^ +⚠️|fig2" || true
+        ACC_JSON=results/summary_deploy.json FT_JSON="$FT" PARETO_JSON="$NEW" \
+            python3 train/make_figs.py | grep -E "^\[A1\]|^\[A4\]|^ +⚠️|fig2" || true
     done
     unset FIG_LANG
 else
@@ -230,7 +265,12 @@ echo "  配備精度   : results/summary_deploy.json / results/summary_deploy_va
 echo "  表・パレート: $NEW"
 echo "  差し替え箇所: docs/A1_replacement_map.md"
 if [ "$VITL_ON" = "1" ]; then
-    echo "  ViT-L      : **配備 FP16 の実測を含む** ($LVL シード。CNN の 30 シードとは母数が違う)"
+    echo "  ViT-L test : **配備 FP16 の実測を含む** ($LVL シード。CNN の 30 シードとは母数が違う)"
 else
-    echo "  ViT-L      : サーバ FP32 のまま (A-4 の測定 $LVL/$EXP_VITL)"
+    echo "  ViT-L test : サーバ FP32 のまま (A-4 の測定 $LVL/$EXP_VITL)"
+fi
+if [ "$VITL_VAL_ON" = "1" ]; then
+    echo "  ViT-L val  : **配備 FP16 の実測を選択に使う** ($LVLV シード。査読指摘 A-5)"
+else
+    echo "  ViT-L val  : サーバ FP32 の val へ fallback (A-5 の測定 $LVLV/$EXP_VITL)"
 fi

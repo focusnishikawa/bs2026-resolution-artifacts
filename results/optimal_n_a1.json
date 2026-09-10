@@ -8,10 +8,7 @@
   "acc_report_is_deployed": true,
   "acc_fallback_models": [],
   "acc_select_fallback_source": "summary_val.json",
-  "acc_select_fallback_models": [
-    "dinov2_l",
-    "dinov3_l"
-  ],
+  "acc_select_fallback_models": [],
   "source": "trt10-maxn",
   "measurement_env": {
     "jetpack": "6.2",
@@ -290,13 +287,13 @@
       "e2e_deploy_ms": 24.225
     },
     {
-      "model": "dinov2_l",
-      "res": 224,
-      "input_res": 224,
-      "acc": 0.9700245520172963,
-      "gpu_ms": 27.014,
-      "e2e_ms": 32.993,
-      "e2e_deploy_ms": 28.234
+      "model": "dinov3_l",
+      "res": 176,
+      "input_res": 176,
+      "acc": 0.9715086664956576,
+      "gpu_ms": 27.083,
+      "e2e_ms": 33.446,
+      "e2e_deploy_ms": 28.45
     },
     {
       "model": "dinov3_l",
@@ -472,13 +469,13 @@
       "e2e_deploy_ms": 24.225
     },
     {
-      "model": "dinov2_l",
-      "res": 224,
-      "input_res": 224,
-      "acc": 0.9700245520172963,
-      "gpu_ms": 27.014,
-      "e2e_ms": 32.993,
-      "e2e_deploy_ms": 28.234
+      "model": "dinov3_l",
+      "res": 176,
+      "input_res": 176,
+      "acc": 0.9715086664956576,
+      "gpu_ms": 27.083,
+      "e2e_ms": 33.446,
+      "e2e_deploy_ms": 28.45
     },
     {
       "model": "dinov3_l",
@@ -681,13 +678,13 @@
       "e2e_deploy_ms": 24.225
     },
     {
-      "model": "dinov2_l",
-      "res": 224,
-      "input_res": 224,
-      "acc": 0.9700245520172963,
-      "gpu_ms": 27.014,
-      "e2e_ms": 32.993,
-      "e2e_deploy_ms": 28.234
+      "model": "dinov3_l",
+      "res": 176,
+      "input_res": 176,
+      "acc": 0.9715086664956576,
+      "gpu_ms": 27.083,
+      "e2e_ms": 33.446,
+      "e2e_deploy_ms": 28.45
     },
     {
       "model": "dinov3_l",
@@ -714,7 +711,7 @@
         "model": "dinov2_l",
         "res": 64,
         "acc": 0.9307,
-        "acc_selected_on": 0.9351,
+        "acc_selected_on": 0.9329,
         "gpu_ms": 9.056,
         "e2e_ms": 14.404,
         "e2e_deploy_ms": 9.402
@@ -732,7 +729,7 @@
         "model": "dinov2_l",
         "res": 64,
         "acc": 0.9307,
-        "acc_selected_on": 0.9351,
+        "acc_selected_on": 0.9329,
         "gpu_ms": 9.056,
         "e2e_ms": 14.404,
         "e2e_deploy_ms": 9.402
@@ -740,31 +737,31 @@
     },
     "33.3": {
       "gpu_ms": {
-        "model": "dinov2_l",
-        "res": 224,
-        "acc": 0.97,
-        "acc_selected_on": 0.9751,
-        "gpu_ms": 27.014,
-        "e2e_ms": 32.993,
-        "e2e_deploy_ms": 28.234
+        "model": "dinov3_l",
+        "res": 176,
+        "acc": 0.9715,
+        "acc_selected_on": 0.9747,
+        "gpu_ms": 27.083,
+        "e2e_ms": 33.446,
+        "e2e_deploy_ms": 28.45
       },
       "e2e_ms": {
         "model": "dinov2_l",
-        "res": 224,
-        "acc": 0.97,
-        "acc_selected_on": 0.9751,
-        "gpu_ms": 27.014,
-        "e2e_ms": 32.993,
-        "e2e_deploy_ms": 28.234
+        "res": 208,
+        "acc": 0.9732,
+        "acc_selected_on": 0.9742,
+        "gpu_ms": 22.451,
+        "e2e_ms": 29.249,
+        "e2e_deploy_ms": 24.225
       },
       "e2e_deploy_ms": {
-        "model": "dinov2_l",
-        "res": 224,
-        "acc": 0.97,
-        "acc_selected_on": 0.9751,
-        "gpu_ms": 27.014,
-        "e2e_ms": 32.993,
-        "e2e_deploy_ms": 28.234
+        "model": "dinov3_l",
+        "res": 176,
+        "acc": 0.9715,
+        "acc_selected_on": 0.9747,
+        "gpu_ms": 27.083,
+        "e2e_ms": 33.446,
+        "e2e_deploy_ms": 28.45
       }
     },
     "50.0": {
@@ -948,7 +945,7 @@
         "model": "dinov2_l",
         "res": 144,
         "acc": 0.963,
-        "acc_selected_on": 0.9664,
+        "acc_selected_on": 0.9653,
         "gpu_ms": 11.71,
         "e2e_ms": 17.677,
         "e2e_deploy_ms": 12.701
@@ -957,7 +954,7 @@
         "model": "dinov2_l",
         "res": 144,
         "acc": 0.963,
-        "acc_selected_on": 0.9664,
+        "acc_selected_on": 0.9653,
         "gpu_ms": 11.71,
         "e2e_ms": 17.677,
         "e2e_deploy_ms": 12.701
@@ -966,7 +963,7 @@
         "model": "dinov2_l",
         "res": 144,
         "acc": 0.963,
-        "acc_selected_on": 0.9664,
+        "acc_selected_on": 0.9653,
         "gpu_ms": 11.71,
         "e2e_ms": 17.677,
         "e2e_deploy_ms": 12.701
@@ -977,7 +974,7 @@
         "model": "dinov2_l",
         "res": 144,
         "acc": 0.963,
-        "acc_selected_on": 0.9664,
+        "acc_selected_on": 0.9653,
         "gpu_ms": 11.71,
         "e2e_ms": 17.677,
         "e2e_deploy_ms": 12.701
@@ -986,7 +983,7 @@
         "model": "dinov2_l",
         "res": 144,
         "acc": 0.963,
-        "acc_selected_on": 0.9664,
+        "acc_selected_on": 0.9653,
         "gpu_ms": 11.71,
         "e2e_ms": 17.677,
         "e2e_deploy_ms": 12.701
@@ -995,7 +992,7 @@
         "model": "dinov2_l",
         "res": 144,
         "acc": 0.963,
-        "acc_selected_on": 0.9664,
+        "acc_selected_on": 0.9653,
         "gpu_ms": 11.71,
         "e2e_ms": 17.677,
         "e2e_deploy_ms": 12.701
