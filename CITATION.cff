@@ -8,7 +8,7 @@ authors:
     affiliation: "Foundation for Computational Science (FOCUS)"
     orcid: "https://orcid.org/0009-0008-4103-1301"
 license: MIT
-version: v1.0.0
+version: v1.0.1
 date-released: "2026-09-11"
 doi: "10.5281/zenodo.22697995"
 repository-code: "https://github.com/focusnishikawa/bs2026-resolution-artifacts"
@@ -18,7 +18,10 @@ identifiers:
     description: "Concept DOI (always resolves to the latest version)"
   - type: doi
     value: "10.5281/zenodo.22697996"
-    description: "DOI of version v1.0.0"
+    description: "DOI of version v1.0.0 (repository archive)"
+  - type: doi
+    value: "10.5281/zenodo.22698141"
+    description: "DOI of version v1.0.1 (adds predictions_per_image.tar.gz)"
 keywords:
   - input resolution
   - edge inference

@@ -230,7 +230,9 @@ latest version:
 }
 ```
 
-The DOI of this specific release (v1.0.0) is 10.5281/zenodo.22697996.
+Version DOIs: v1.0.0 (repository archive) is 10.5281/zenodo.22697996; **v1.0.1** is
+10.5281/zenodo.22698141 and additionally carries `predictions_per_image.tar.gz`
+(240 MB, 5,824 per-image prediction CSVs).
 
 The accompanying paper is under submission; this section will be updated with its DOI on
 publication.
