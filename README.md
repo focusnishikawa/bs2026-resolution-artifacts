@@ -28,11 +28,14 @@ source URL, SHA-256, group ID and the split membership under both splits.
 | `edge_scripts/*` | Orin-side scripts: ONNX export, graph splitting, TensorRT builds, latency and accuracy measurement |
 
 Per-image predictions (6 logits + argmax for every image, for all seeds and configurations, on
-both the test and the validation split; 4,984 CSV files, 585 MB uncompressed) are **not in this
+both the test and the validation split; 5,824 CSV files, 683 MB uncompressed) are **not in this
 repository** — they are attached to the Zenodo record as `predictions_per_image.tar.gz`
-(198 MB). The archive holds `preds_30seed/` and `preds_30seed_val/` (30 seeds, s42-s71) for the
-small models and `preds_vitl_30seed/` and `preds_vitl_30seed_val/` (29 seeds, s43-s71) for the
-ViT-L backbones, plus `labels.npy` for the test (1,882) and validation (1,876) splits.
+(240 MB). The archive holds `preds_30seed/` and `preds_30seed_val/` (30 seeds, s42-s71) for the
+small models, `preds_vitl_30seed/` and `preds_vitl_30seed_val/` (29 seeds, s43-s71) for the
+ViT-L backbones, and `preds_30seed_fp32/` and `preds_30seed_fp32_val/` (30 seeds, s42-s71,
+14 resolutions) for the all-FP32 ViT-S/16 engines, plus `labels.npy` for the test (1,882) and
+validation (1,876) splits. All six directories index the same images in the same order, so the
+two `labels.npy` files apply to all of them.
 
 ## 2. Dataset
 
@@ -112,6 +115,8 @@ source, under two counting conventions (`in_straddling_group_*`, the paper's def
 | `summary_v2.json` | Server FP32 test accuracy, all 84 configurations x 30 seeds, both regimes, with `per_seed` |
 | `summary_val.json` | The same on validation (used for selection) |
 | `summary_deploy.json` / `summary_deploy_val.json` | Accuracy of the engine actually deployed on the Orin (test / validation) |
+| `summary_deploy_fp32.json` | The same for the all-FP32 ViT-S/16 engines (14 resolutions x 30 seeds, test and validation) |
+| `vits_fp32_candidacy.json` | Selection under time budgets and accuracy targets recomputed with the FP32 ViT-S/16 configurations added as candidates |
 | `summary_group.json` | Boundary 16 configurations x 30 seeds under the group-disjoint split |
 | `final_tables*.json` | Latency, preprocessing and derived tables (`_trt10_maxn` is the current environment) |
 | `optimal_n*.json`, `target_sweep.json` | Configuration selection under time budgets and accuracy targets |
@@ -159,6 +164,13 @@ the continuous execution of whole chains.
 Precision as deployed: FP16 for the CNNs and ViT-S/16; DINOv2-L mixed (FP32 on the last part
 only, because outlier activations exceed the FP16 range); DINOv3-L FP32 throughout. Server
 measurements use an NVIDIA H200 with TensorRT 10.7 and are medians of three runs.
+
+ViT-S/16 was additionally built and measured **all-FP32** at all 14 resolutions under the same
+protocol (`edge_scripts/build_trt10_fp32_vits.sh`, `measure_trt10_fp32_mode.sh`,
+`run_30seed_deploy_acc_fp32.sh`, driven by `run_vits_fp32_all.sh`), so that the FP16 accuracy
+loss on this backbone can be separated from the resolution effect and the FP32 configurations
+can be entered as selection candidates (`train/aggregate_fp32.py`,
+`train/vits_fp32_candidacy.py`).
 
 **Verification applied to every engine** (a build that silently degenerates can be faster than
 a correct one): all 1,882 test images are run through it and the number of distinct outputs is
