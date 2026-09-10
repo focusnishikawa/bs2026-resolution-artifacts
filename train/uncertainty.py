@@ -9,12 +9,29 @@
 
 ⚠️⚠️ 画像側は**1 枚単位で再標本化してはいけない**。同一の元写真から切ったクロップや
    同一動画の隣接フレームは独立ではないので，**群 (元画像の機材 ID・観測 ID・動画系列)
-   を単位に再標本化する** (cluster bootstrap)。群の定義は make_group_split.py と同一。
+   を単位に再標本化する** (cluster bootstrap)。
 ⚠️ 1,882 枚 x 30 シード を 56,460 の独立標本として数えることはしない。
    画像側は**シード平均した 1 枚あたりの正誤**に対して群を再標本化する。
 
+⭐ 群規則は 2 つある (再レビュー指摘 (1))。--group-rule で選ぶ。
+
+  v1 (既定・従来値の再現用)
+      make_group_split.py:group_of と同一。動画フレームは `frame_<n>_bb<n>_...jpg` を
+      「種ごとに 1 群」へまとめる規則だが、**`<動画ID8桁>__frame_...jpg` という名前の
+      1,000 枚 (bird_frames_pure_oowashi_20260504/) に一致せず 1 枚 1 群**になっていた。
+      すなわち同一動画の隣接フレームが独立標本として数えられており、区間が狭く出る。
+
+  v2 (動画 ID を拾う修正規則)
+      data/manifest.csv の `group_id_v2` 列 (make_data_manifest.py:group_v2 が生成)を
+      rel_path で結合して使う。接頭辞 8 桁の動画 ID ごとに 1 群へまとめるので、
+      動画由来の依存が群として正しく効く。
+
+⚠️ v1 の出力 (results/uncertainty.json) は論文が引用済みなので**上書きしない**。
+   v2 は --out で別ファイルへ出す。
+
 usage:
   python3 train/uncertainty.py [--boot 2000] [--out results/uncertainty.json]
+  python3 train/uncertainty.py --group-rule v2 --out results/uncertainty_groupv2.json
 """
 import argparse
 import csv
@@ -31,6 +48,7 @@ from make_group_split import group_of  # noqa: E402
 PREDS = os.path.join(R, "results", "preds_30seed")
 PREDS_VITL = os.path.join(R, "results", "preds_vitl_30seed")
 SPLIT_CSV = os.path.join(R, "data", "splits", "test.csv")
+MANIFEST = os.path.join(R, "data", "manifest.csv")
 RNG_SEED = 20260908
 
 # 本文で中心になる構成 (表 6 の選択例・10 ms 予算・モデル変更の比較)
@@ -49,7 +67,37 @@ DIFFS = [
 VITL = ("dinov2_l", "dinov3_l")
 
 
-def load_labels_groups():
+def load_manifest_groups(rows):
+    """data/manifest.csv の group_id_v2 を rel_path で結合する (群規則 v2).
+
+    ⚠️ 見つからない行があったら黙って落とさず即エラー。1 枚でも欠けると
+       群の単位が変わり区間が意味を失う。
+    """
+    if not os.path.exists(MANIFEST):
+        raise SystemExit("[abort] %s が無い。先に train/make_data_manifest.py を実行すること" % MANIFEST)
+    man = {}
+    with open(MANIFEST) as f:
+        for r in csv.DictReader(f):
+            man[r["rel_path"]] = r
+    missing = [r["rel_path"] for r in rows if r["rel_path"] not in man]
+    if missing:
+        raise SystemExit("[abort] test の %d 枚が manifest.csv に無い (例: %s)"
+                         % (len(missing), missing[0]))
+    # split_image との整合 (test.csv と manifest が同じ分割を指しているか)
+    not_test = [r["rel_path"] for r in rows if man[r["rel_path"]]["split_image"] != "test"]
+    n_man_test = sum(1 for v in man.values() if v["split_image"] == "test")
+    print("manifest.csv %d 行と結合: test %d 枚すべてが一致 (欠損 0)" % (len(man), len(rows)))
+    print("  manifest の split_image=='test' は %d 枚 / test.csv は %d 枚 %s"
+          % (n_man_test, len(rows), "(一致)" if n_man_test == len(rows) else "⛔ 不一致"))
+    if not_test or n_man_test != len(rows):
+        raise SystemExit("[abort] manifest の split_image と test.csv が食い違う (%d 枚)" % len(not_test))
+    bad_sp = [r["rel_path"] for r in rows if man[r["rel_path"]]["species_key"] != r["species_key"]]
+    if bad_sp:
+        raise SystemExit("[abort] species_key が manifest と食い違う (%d 枚)" % len(bad_sp))
+    return np.array([man[r["rel_path"]]["group_id_v2"] for r in rows])
+
+
+def load_labels_groups(rule="v1"):
     lab = np.load(os.path.join(PREDS, "labels.npy"))
     rows = list(csv.DictReader(open(SPLIT_CSV)))
     if len(rows) != len(lab):
@@ -57,7 +105,12 @@ def load_labels_groups():
     csv_lab = np.array([int(r["species_idx"]) for r in rows])
     if not (csv_lab == lab).all():
         raise SystemExit("[abort] test.csv のラベルと labels.npy が一致しない (並び順が違う)")
-    groups = np.array([group_of(r["rel_path"], r["species_key"]) for r in rows])
+    if rule == "v1":
+        groups = np.array([group_of(r["rel_path"], r["species_key"]) for r in rows])
+    elif rule == "v2":
+        groups = load_manifest_groups(rows)
+    else:
+        raise SystemExit("[abort] 未知の群規則: %s" % rule)
     return lab, groups
 
 
@@ -101,18 +154,33 @@ def cluster_boot(per_img, groups, rng, B):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--boot", type=int, default=2000)
+    ap.add_argument("--group-rule", dest="group_rule", default="v1", choices=["v1", "v2"],
+                    help="群の定義。v1=make_group_split.py と同一 (従来値の再現)、"
+                         "v2=manifest.csv の group_id_v2 (動画 ID を拾う修正規則)")
     ap.add_argument("--out", default=os.path.join(R, "results", "uncertainty.json"))
     args = ap.parse_args()
 
-    lab, groups = load_labels_groups()
+    print("群規則: %s" % args.group_rule)
+    lab, groups = load_labels_groups(args.group_rule)
     rng = np.random.default_rng(RNG_SEED)
-    n_group = len(np.unique(groups))
-    print("test %d 枚 / 群 %d 個 (最大の群は %d 枚)"
-          % (len(lab), n_group, np.bincount(np.unique(groups, return_inverse=True)[1]).max()))
+    uniq_g, inv_g = np.unique(groups, return_inverse=True)
+    n_group = len(uniq_g)
+    sizes = np.bincount(inv_g)
+    n_video_group = int(sum(1 for g in uniq_g if "/VIDEO" in g))
+    n_video_img = int(sum(sizes[i] for i, g in enumerate(uniq_g) if "/VIDEO" in g))
+    print("test %d 枚 / 群 %d 個 (最大の群は %d 枚)" % (len(lab), n_group, sizes.max()))
+    print("  うち動画由来の群: %d 個 (%d 枚)  ← 群規則 %s"
+          % (n_video_group, n_video_img, args.group_rule))
     print("cluster bootstrap %d 回・乱数シード %d\n" % (args.boot, RNG_SEED))
 
     out = {"note": "seed 変動と画像側 (群単位 cluster bootstrap) を分けて報告する",
+           "group_rule": args.group_rule,
+           "group_rule_desc": ("make_group_split.py:group_of と同一 (動画 ID 接頭辞つき"
+                               "フレームを拾えず 1 枚 1 群になる)" if args.group_rule == "v1"
+                               else "data/manifest.csv の group_id_v2 (動画 ID 8 桁で 1 群)"),
            "n_test": int(len(lab)), "n_group": int(n_group),
+           "max_group_size": int(sizes.max()),
+           "n_video_group": n_video_group, "n_video_image": n_video_img,
            "n_boot": args.boot, "rng_seed": RNG_SEED, "by_config": {}, "diffs": []}
 
     cache = {}

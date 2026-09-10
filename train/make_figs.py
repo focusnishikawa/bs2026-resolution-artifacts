@@ -248,7 +248,7 @@ def fig2_pareto():
     ax.annotate(T("効率の頂点  %s N=%d\n%.3f / %.2f ms", "efficiency peak  %s N=%d\n%.3f / %.2f ms") % (LABEL[best["model"]], best["res"],
                                                         best["acc"], best["latency_ms"]),
                 (best["latency_ms"], best["acc"]), textcoords="axes fraction",
-                xytext=(0.02, 0.94), ha="left", va="top", fontsize=11, color="#0b0b0b",
+                xytext=(0.02, 0.94), ha="left", va="top", fontsize=12.5, color="#0b0b0b",
                 arrowprops=dict(arrowstyle="->", color="#8a8a85", lw=1))
     # 注記の上下関係: 「小型モデルで最高精度」を上、「ViT-L は動く」を下に置く。
     # ⭐ 2 つの注記は**先頭 (左端) を縦に揃える**。前者は左下の小型モデル最高精度点を、
@@ -287,7 +287,7 @@ def fig2_pareto():
         an = ax.annotate(T("ViT-L は動く (分割)。N を上げると\n精度は最高だが %s かかる",
                            "ViT-L does run (split). Raising N\ngives top accuracy at %s") % _rng,
                          (dx, dy), textcoords="axes fraction", xytext=(0.62, 0.10),
-                         ha="right", va="center", fontsize=11, color="#0b0b0b",
+                         ha="right", va="center", fontsize=12.5, color="#0b0b0b",
                          arrowprops=dict(arrowstyle="->", color="#8a8a85", lw=1))
         fig.canvas.draw()
         small_x = an.get_window_extent().transformed(ax.transAxes.inverted()).x0
@@ -304,12 +304,18 @@ def fig2_pareto():
                 % ((_slow, LABEL[best["model"]]) if EN
                    else (LABEL[best["model"]], _slow)), (vx, vy),
                 textcoords="axes fraction", xytext=(small_x, T(0.51, 0.65)), ha="left", va="center",
-                fontsize=11, color="#0b0b0b",
+                fontsize=12.5, color="#0b0b0b",
                 arrowprops=dict(arrowstyle="->", color="#8a8a85", lw=1))
     ax.set_xscale("log")
     ax.margins(x=0.10, y=0.12)
-    ax.set_xlabel(T("Orin Nano レイテンシ (ms/枚、対数軸)", "Orin Nano latency (ms/image, log scale)"))
-    ax.set_ylabel(T("test accuracy (条件B, 30 seed 平均)", "test accuracy (regime B, mean of 30 seeds)"))
+    # ⭐ 査読指摘 (2026-09-10): ViT-L 級は 29 シードなので軸ラベルに「30 seed」と書かない
+    #    (シード数の内訳はキャプションに書いてある)。文字も小さいと指摘されたので
+    #    fig2 に限り軸・目盛・注記を 1 段大きくする (他の図は preprint と共有のため触らない)。
+    ax.tick_params(labelsize=12.5)
+    ax.set_xlabel(T("Orin Nano レイテンシ (ms/枚、対数軸)", "Orin Nano latency (ms/image, log scale)"),
+                  fontsize=13)
+    ax.set_ylabel(T("test accuracy (条件B, seed 平均)", "test accuracy (regime B, mean over seeds)"),
+                  fontsize=13)
     # ⭐ 査読指摘 A-4: 大きい印は **validation で選んだ**パレート集合である。
     #   縦軸は test 精度なので、**test 上では支配されて見える点が含まれうる**。断らずに
     #   「Pareto-optimal」と書くと、図が主張する集合を誤って表示することになる。
@@ -317,7 +323,7 @@ def fig2_pareto():
                    "Accuracy vs. latency. Large markers: validation-selected Pareto set; ViT-L runs when split (N=16-224)"),
                  fontsize=12.5)
     # 凡例は軸の外 (下) へ出す。図中に注記を 3 つ置くため、内側に凡例を置くと必ずどこかで重なる
-    ax.legend(fontsize=11, loc="upper center", bbox_to_anchor=(0.5, -0.13),
+    ax.legend(fontsize=12, loc="upper center", bbox_to_anchor=(0.5, -0.13),
               ncol=3, handletextpad=0.4, columnspacing=1.6)
     _save(fig, "fig2_pareto_orin")
     plt.close(fig)

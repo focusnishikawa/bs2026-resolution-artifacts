@@ -1,0 +1,138 @@
+{
+ "note": "seed 変動と画像側 (群単位 cluster bootstrap) を分けて報告する",
+ "group_rule": "v2",
+ "group_rule_desc": "data/manifest.csv の group_id_v2 (動画 ID 8 桁で 1 群)",
+ "n_test": 1882,
+ "n_group": 1720,
+ "max_group_size": 38,
+ "n_video_group": 35,
+ "n_video_image": 197,
+ "n_boot": 2000,
+ "rng_seed": 20260908,
+ "by_config": {
+  "resnet50_r112": {
+   "n_seed": 30,
+   "seeds": [
+    42,
+    71
+   ],
+   "acc_mean": 0.8980162947219269,
+   "acc_sd_seed": 0.0125173265290182,
+   "acc_se_seed": 0.0022853406998670374,
+   "group_boot_lo": 0.886989658688828,
+   "group_boot_hi": 0.9084294074259869,
+   "group_boot_halfwidth_pt": 1.0719874368579463
+  },
+  "resnet50_r224": {
+   "n_seed": 30,
+   "seeds": [
+    42,
+    71
+   ],
+   "acc_mean": 0.921342543393553,
+   "acc_sd_seed": 0.013472211540351208,
+   "acc_se_seed": 0.002459678053377259,
+   "group_boot_lo": 0.9117592759582553,
+   "group_boot_hi": 0.930484350647348,
+   "group_boot_halfwidth_pt": 0.936253734454634
+  },
+  "vit_small_r224": {
+   "n_seed": 30,
+   "seeds": [
+    42,
+    71
+   ],
+   "acc_mean": 0.8800566772936593,
+   "acc_sd_seed": 0.03800797431684794,
+   "acc_se_seed": 0.006939274966138207,
+   "group_boot_lo": 0.8687022336033924,
+   "group_boot_hi": 0.8910354376009061,
+   "group_boot_halfwidth_pt": 1.1166601998756853
+  },
+  "dinov2_l_r64": {
+   "n_seed": 29,
+   "seeds": [
+    43,
+    71
+   ],
+   "acc_mean": 0.9307046795412071,
+   "acc_sd_seed": 0.010409879118087982,
+   "acc_se_seed": 0.0019330660232155783,
+   "group_boot_lo": 0.9217442126249344,
+   "group_boot_hi": 0.9392640009097643,
+   "group_boot_halfwidth_pt": 0.8759894142414903
+  },
+  "dinov2_l_r112": {
+   "n_seed": 29,
+   "seeds": [
+    43,
+    71
+   ],
+   "acc_mean": 0.9573454505478397,
+   "acc_sd_seed": 0.006201259848572844,
+   "acc_se_seed": 0.0011515450447045078,
+   "group_boot_lo": 0.9500706152659112,
+   "group_boot_hi": 0.9642008238337278,
+   "group_boot_halfwidth_pt": 0.706510428390833
+  },
+  "dinov2_l_r144": {
+   "n_seed": 29,
+   "seeds": [
+    43,
+    71
+   ],
+   "acc_mean": 0.9629521052438711,
+   "acc_sd_seed": 0.005129846911793746,
+   "acc_se_seed": 0.0009525886570820449,
+   "group_boot_lo": 0.9563212747145249,
+   "group_boot_hi": 0.9696296966645415,
+   "group_boot_halfwidth_pt": 0.665421097500829
+  }
+ },
+ "diffs": [
+  {
+   "a": "dinov2_l_r112",
+   "b": "resnet50_r112",
+   "label": "モデル変更 (同一 N=112)",
+   "n_common_seed": 29,
+   "diff_pt": 5.965773754992852,
+   "sd_seed_pt": 1.2109890302812703,
+   "group_boot_lo_pt": 5.108714884525389,
+   "group_boot_hi_pt": 6.795340111693611,
+   "excludes_zero": true
+  },
+  {
+   "a": "resnet50_r224",
+   "b": "resnet50_r112",
+   "label": "解像度 112->224 (同一モデル)",
+   "n_common_seed": 30,
+   "diff_pt": 2.332624867162593,
+   "sd_seed_pt": 1.7726620400732784,
+   "group_boot_lo_pt": 1.8301407855875471,
+   "group_boot_hi_pt": 2.865680593691255,
+   "excludes_zero": true
+  },
+  {
+   "a": "dinov2_l_r64",
+   "b": "resnet50_r224",
+   "label": "10 ms 予算の 2 構成 (配備 / オフライン)",
+   "n_common_seed": 29,
+   "diff_pt": 0.9820806918538602,
+   "sd_seed_pt": 2.0298182060077967,
+   "group_boot_lo_pt": 0.2889555053364679,
+   "group_boot_hi_pt": 1.6840243309710372,
+   "excludes_zero": true
+  },
+  {
+   "a": "resnet50_r224",
+   "b": "vit_small_r224",
+   "label": "目標 0.93 付近の当事者",
+   "n_common_seed": 30,
+   "diff_pt": 4.128586609989374,
+   "sd_seed_pt": 4.15382234083084,
+   "group_boot_lo_pt": 3.347301272727624,
+   "group_boot_hi_pt": 4.892305229046035,
+   "excludes_zero": true
+  }
+ ]
+}
