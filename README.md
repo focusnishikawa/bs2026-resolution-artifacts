@@ -27,9 +27,12 @@ source URL, SHA-256, group ID and the split membership under both splits.
 | `train/*.py`, `train/*.sh` | Training, evaluation, aggregation, statistics and figure generation |
 | `edge_scripts/*` | Orin-side scripts: ONNX export, graph splitting, TensorRT builds, latency and accuracy measurement |
 
-Per-image predictions (6 logits + argmax for every image, for all seeds and configurations;
-4,172 CSV files, 490 MB uncompressed) are **not in this repository** — they are attached to the
-Zenodo record as `predictions_per_image.tar.gz`.
+Per-image predictions (6 logits + argmax for every image, for all seeds and configurations, on
+both the test and the validation split; 4,984 CSV files, 585 MB uncompressed) are **not in this
+repository** — they are attached to the Zenodo record as `predictions_per_image.tar.gz`
+(198 MB). The archive holds `preds_30seed/` and `preds_30seed_val/` (30 seeds, s42-s71) for the
+small models and `preds_vitl_30seed/` and `preds_vitl_30seed_val/` (29 seeds, s43-s71) for the
+ViT-L backbones, plus `labels.npy` for the test (1,882) and validation (1,876) splits.
 
 ## 2. Dataset
 
