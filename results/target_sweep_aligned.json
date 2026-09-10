@@ -1,0 +1,4015 @@
+{
+ "note": "選択規則を val にそろえたうえで、サーバ FP32 と配備 FP16 の どちらで選ぶかだけを変えたときの最短構成",
+ "src": "trt10-maxn",
+ "tkey": "e2e_deploy_ms",
+ "step": 0.001,
+ "server_acc": "results/summary_val_aligned.json",
+ "deploy_val_models": [
+  "dinov2_l",
+  "dinov3_l",
+  "effb0",
+  "mnv4",
+  "resnet50",
+  "vit_small"
+ ],
+ "n_target": 176,
+ "n_changed": 26,
+ "changed_fraction": 0.14772727272727273,
+ "spans": [
+  {
+   "from": 0.814,
+   "to": 0.814,
+   "server": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.8146055437100214,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   }
+  },
+  {
+   "from": 0.87,
+   "to": 0.87,
+   "server": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8702025586353945,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.8864250177683014,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   }
+  },
+  {
+   "from": 0.887,
+   "to": 0.887,
+   "server": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.887046908315565,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 96,
+    "val": 0.8896233120113717,
+    "fallback": false,
+    "time_ms": 1.68,
+    "test": 0.8831739284449167
+   }
+  },
+  {
+   "from": 0.89,
+   "to": 0.89,
+   "server": {
+    "model": "resnet50",
+    "res": 96,
+    "val": 0.8904761904761905,
+    "fallback": false,
+    "time_ms": 1.68,
+    "test": 0.8831739284449167
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.9050817341862117,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   }
+  },
+  {
+   "from": 0.919,
+   "to": 0.919,
+   "server": {
+    "model": "resnet50",
+    "res": 160,
+    "val": 0.9194740582800285,
+    "fallback": false,
+    "time_ms": 2.592,
+    "test": 0.9122210414452709
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 176,
+    "val": 0.9214818763326226,
+    "fallback": false,
+    "time_ms": 2.974,
+    "test": 0.9139390719093163
+   }
+  },
+  {
+   "from": 0.92,
+   "to": 0.921,
+   "server": {
+    "model": "vit_small",
+    "res": 160,
+    "val": 0.9221570717839375,
+    "fallback": false,
+    "time_ms": 2.809,
+    "test": 0.8707757704569606
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 176,
+    "val": 0.9214818763326226,
+    "fallback": false,
+    "time_ms": 2.974,
+    "test": 0.9139390719093163
+   }
+  },
+  {
+   "from": 0.922,
+   "to": 0.922,
+   "server": {
+    "model": "vit_small",
+    "res": 160,
+    "val": 0.9221570717839375,
+    "fallback": false,
+    "time_ms": 2.809,
+    "test": 0.8707757704569606
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 224,
+    "val": 0.9302061122956645,
+    "fallback": false,
+    "time_ms": 3.078,
+    "test": 0.921342543393553
+   }
+  },
+  {
+   "from": 0.923,
+   "to": 0.927,
+   "server": {
+    "model": "vit_small",
+    "res": 176,
+    "val": 0.9278073916133618,
+    "fallback": false,
+    "time_ms": 3.044,
+    "test": 0.8569252568189868
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 224,
+    "val": 0.9302061122956645,
+    "fallback": false,
+    "time_ms": 3.078,
+    "test": 0.921342543393553
+   }
+  },
+  {
+   "from": 0.931,
+   "to": 0.932,
+   "server": {
+    "model": "vit_small",
+    "res": 224,
+    "val": 0.9388948116560056,
+    "fallback": false,
+    "time_ms": 3.578,
+    "test": 0.8800566772936592
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 64,
+    "val": 0.9328725828983163,
+    "fallback": false,
+    "time_ms": 9.402,
+    "test": 0.9307046795412071
+   }
+  },
+  {
+   "from": 0.933,
+   "to": 0.938,
+   "server": {
+    "model": "vit_small",
+    "res": 224,
+    "val": 0.9388948116560056,
+    "fallback": false,
+    "time_ms": 3.578,
+    "test": 0.8800566772936592
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   }
+  },
+  {
+   "from": 0.966,
+   "to": 0.966,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9662708624365856,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 160,
+    "val": 0.9668774354826851,
+    "fallback": false,
+    "time_ms": 13.701,
+    "test": 0.9637399684854703
+   }
+  },
+  {
+   "from": 0.967,
+   "to": 0.968,
+   "server": {
+    "model": "dinov2_l",
+    "res": 160,
+    "val": 0.968550106609808,
+    "fallback": false,
+    "time_ms": 13.701,
+    "test": 0.9637399684854703
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 176,
+    "val": 0.9713440188221454,
+    "fallback": false,
+    "time_ms": 20.754,
+    "test": 0.9692550111766646
+   }
+  },
+  {
+   "from": 0.972,
+   "to": 0.972,
+   "server": {
+    "model": "dinov2_l",
+    "res": 176,
+    "val": 0.9721895448864054,
+    "fallback": false,
+    "time_ms": 20.754,
+    "test": 0.9692550111766646
+   },
+   "deploy": {
+    "model": "dinov3_l",
+    "res": 144,
+    "val": 0.972777736931108,
+    "fallback": false,
+    "time_ms": 24.054,
+    "test": 0.96615852541317
+   }
+  },
+  {
+   "from": 0.975,
+   "to": 0.975,
+   "server": {
+    "model": "dinov2_l",
+    "res": 208,
+    "val": 0.9750202191015366,
+    "fallback": false,
+    "time_ms": 24.225,
+    "test": 0.973176004983693
+   },
+   "deploy": {
+    "model": "dinov3_l",
+    "res": 192,
+    "val": 0.9751672671127123,
+    "fallback": false,
+    "time_ms": 39.902,
+    "test": 0.9709773168676024
+   }
+  }
+ ],
+ "rows": [
+  {
+   "target": 0.8,
+   "server": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.8146055437100214,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.813361762615494,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "same": true
+  },
+  {
+   "target": 0.801,
+   "server": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.8146055437100214,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.813361762615494,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "same": true
+  },
+  {
+   "target": 0.802,
+   "server": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.8146055437100214,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.813361762615494,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "same": true
+  },
+  {
+   "target": 0.803,
+   "server": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.8146055437100214,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.813361762615494,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "same": true
+  },
+  {
+   "target": 0.804,
+   "server": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.8146055437100214,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.813361762615494,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "same": true
+  },
+  {
+   "target": 0.805,
+   "server": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.8146055437100214,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.813361762615494,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "same": true
+  },
+  {
+   "target": 0.806,
+   "server": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.8146055437100214,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.813361762615494,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "same": true
+  },
+  {
+   "target": 0.807,
+   "server": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.8146055437100214,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.813361762615494,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "same": true
+  },
+  {
+   "target": 0.808,
+   "server": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.8146055437100214,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.813361762615494,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "same": true
+  },
+  {
+   "target": 0.809,
+   "server": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.8146055437100214,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.813361762615494,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "same": true
+  },
+  {
+   "target": 0.81,
+   "server": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.8146055437100214,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.813361762615494,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "same": true
+  },
+  {
+   "target": 0.811,
+   "server": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.8146055437100214,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.813361762615494,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "same": true
+  },
+  {
+   "target": 0.812,
+   "server": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.8146055437100214,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.813361762615494,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "same": true
+  },
+  {
+   "target": 0.813,
+   "server": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.8146055437100214,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.813361762615494,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "same": true
+  },
+  {
+   "target": 0.814,
+   "server": {
+    "model": "resnet50",
+    "res": 32,
+    "val": 0.8146055437100214,
+    "fallback": false,
+    "time_ms": 1.159,
+    "test": 0.8049061282323768
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": false
+  },
+  {
+   "target": 0.815,
+   "server": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8433546552949538,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": true
+  },
+  {
+   "target": 0.816,
+   "server": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8433546552949538,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": true
+  },
+  {
+   "target": 0.817,
+   "server": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8433546552949538,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": true
+  },
+  {
+   "target": 0.818,
+   "server": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8433546552949538,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": true
+  },
+  {
+   "target": 0.819,
+   "server": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8433546552949538,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": true
+  },
+  {
+   "target": 0.82,
+   "server": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8433546552949538,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": true
+  },
+  {
+   "target": 0.821,
+   "server": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8433546552949538,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": true
+  },
+  {
+   "target": 0.822,
+   "server": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8433546552949538,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": true
+  },
+  {
+   "target": 0.823,
+   "server": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8433546552949538,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": true
+  },
+  {
+   "target": 0.824,
+   "server": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8433546552949538,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": true
+  },
+  {
+   "target": 0.825,
+   "server": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8433546552949538,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": true
+  },
+  {
+   "target": 0.826,
+   "server": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8433546552949538,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": true
+  },
+  {
+   "target": 0.827,
+   "server": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8433546552949538,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": true
+  },
+  {
+   "target": 0.828,
+   "server": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8433546552949538,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": true
+  },
+  {
+   "target": 0.829,
+   "server": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8433546552949538,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": true
+  },
+  {
+   "target": 0.83,
+   "server": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8433546552949538,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": true
+  },
+  {
+   "target": 0.831,
+   "server": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8433546552949538,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": true
+  },
+  {
+   "target": 0.832,
+   "server": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8433546552949538,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": true
+  },
+  {
+   "target": 0.833,
+   "server": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8433546552949538,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": true
+  },
+  {
+   "target": 0.834,
+   "server": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8433546552949538,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": true
+  },
+  {
+   "target": 0.835,
+   "server": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8433546552949538,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": true
+  },
+  {
+   "target": 0.836,
+   "server": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8433546552949538,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": true
+  },
+  {
+   "target": 0.837,
+   "server": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8433546552949538,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": true
+  },
+  {
+   "target": 0.838,
+   "server": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8433546552949538,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": true
+  },
+  {
+   "target": 0.839,
+   "server": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8433546552949538,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": true
+  },
+  {
+   "target": 0.84,
+   "server": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8433546552949538,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": true
+  },
+  {
+   "target": 0.841,
+   "server": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8433546552949538,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": true
+  },
+  {
+   "target": 0.842,
+   "server": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8433546552949538,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": true
+  },
+  {
+   "target": 0.843,
+   "server": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8433546552949538,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 48,
+    "val": 0.8431592039800996,
+    "fallback": false,
+    "time_ms": 1.275,
+    "test": 0.8394261424017003
+   },
+   "same": true
+  },
+  {
+   "target": 0.844,
+   "server": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8702025586353945,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8694385216773276,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "same": true
+  },
+  {
+   "target": 0.845,
+   "server": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8702025586353945,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8694385216773276,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "same": true
+  },
+  {
+   "target": 0.846,
+   "server": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8702025586353945,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8694385216773276,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "same": true
+  },
+  {
+   "target": 0.847,
+   "server": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8702025586353945,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8694385216773276,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "same": true
+  },
+  {
+   "target": 0.848,
+   "server": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8702025586353945,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8694385216773276,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "same": true
+  },
+  {
+   "target": 0.849,
+   "server": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8702025586353945,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8694385216773276,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "same": true
+  },
+  {
+   "target": 0.85,
+   "server": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8702025586353945,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8694385216773276,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "same": true
+  },
+  {
+   "target": 0.851,
+   "server": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8702025586353945,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8694385216773276,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "same": true
+  },
+  {
+   "target": 0.852,
+   "server": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8702025586353945,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8694385216773276,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "same": true
+  },
+  {
+   "target": 0.853,
+   "server": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8702025586353945,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8694385216773276,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "same": true
+  },
+  {
+   "target": 0.854,
+   "server": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8702025586353945,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8694385216773276,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "same": true
+  },
+  {
+   "target": 0.855,
+   "server": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8702025586353945,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8694385216773276,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "same": true
+  },
+  {
+   "target": 0.856,
+   "server": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8702025586353945,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8694385216773276,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "same": true
+  },
+  {
+   "target": 0.857,
+   "server": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8702025586353945,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8694385216773276,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "same": true
+  },
+  {
+   "target": 0.858,
+   "server": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8702025586353945,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8694385216773276,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "same": true
+  },
+  {
+   "target": 0.859,
+   "server": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8702025586353945,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8694385216773276,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "same": true
+  },
+  {
+   "target": 0.86,
+   "server": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8702025586353945,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8694385216773276,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "same": true
+  },
+  {
+   "target": 0.861,
+   "server": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8702025586353945,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8694385216773276,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "same": true
+  },
+  {
+   "target": 0.862,
+   "server": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8702025586353945,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8694385216773276,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "same": true
+  },
+  {
+   "target": 0.863,
+   "server": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8702025586353945,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8694385216773276,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "same": true
+  },
+  {
+   "target": 0.864,
+   "server": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8702025586353945,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8694385216773276,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "same": true
+  },
+  {
+   "target": 0.865,
+   "server": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8702025586353945,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8694385216773276,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "same": true
+  },
+  {
+   "target": 0.866,
+   "server": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8702025586353945,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8694385216773276,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "same": true
+  },
+  {
+   "target": 0.867,
+   "server": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8702025586353945,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8694385216773276,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "same": true
+  },
+  {
+   "target": 0.868,
+   "server": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8702025586353945,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8694385216773276,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "same": true
+  },
+  {
+   "target": 0.869,
+   "server": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8702025586353945,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8694385216773276,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "same": true
+  },
+  {
+   "target": 0.87,
+   "server": {
+    "model": "resnet50",
+    "res": 64,
+    "val": 0.8702025586353945,
+    "fallback": false,
+    "time_ms": 1.379,
+    "test": 0.861424017003188
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.8864250177683014,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "same": false
+  },
+  {
+   "target": 0.871,
+   "server": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.887046908315565,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.8864250177683014,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "same": true
+  },
+  {
+   "target": 0.872,
+   "server": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.887046908315565,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.8864250177683014,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "same": true
+  },
+  {
+   "target": 0.873,
+   "server": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.887046908315565,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.8864250177683014,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "same": true
+  },
+  {
+   "target": 0.874,
+   "server": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.887046908315565,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.8864250177683014,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "same": true
+  },
+  {
+   "target": 0.875,
+   "server": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.887046908315565,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.8864250177683014,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "same": true
+  },
+  {
+   "target": 0.876,
+   "server": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.887046908315565,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.8864250177683014,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "same": true
+  },
+  {
+   "target": 0.877,
+   "server": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.887046908315565,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.8864250177683014,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "same": true
+  },
+  {
+   "target": 0.878,
+   "server": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.887046908315565,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.8864250177683014,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "same": true
+  },
+  {
+   "target": 0.879,
+   "server": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.887046908315565,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.8864250177683014,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "same": true
+  },
+  {
+   "target": 0.88,
+   "server": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.887046908315565,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.8864250177683014,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "same": true
+  },
+  {
+   "target": 0.881,
+   "server": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.887046908315565,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.8864250177683014,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "same": true
+  },
+  {
+   "target": 0.882,
+   "server": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.887046908315565,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.8864250177683014,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "same": true
+  },
+  {
+   "target": 0.883,
+   "server": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.887046908315565,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.8864250177683014,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "same": true
+  },
+  {
+   "target": 0.884,
+   "server": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.887046908315565,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.8864250177683014,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "same": true
+  },
+  {
+   "target": 0.885,
+   "server": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.887046908315565,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.8864250177683014,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "same": true
+  },
+  {
+   "target": 0.886,
+   "server": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.887046908315565,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.8864250177683014,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "same": true
+  },
+  {
+   "target": 0.887,
+   "server": {
+    "model": "resnet50",
+    "res": 80,
+    "val": 0.887046908315565,
+    "fallback": false,
+    "time_ms": 1.505,
+    "test": 0.8820758058802692
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 96,
+    "val": 0.8896233120113717,
+    "fallback": false,
+    "time_ms": 1.68,
+    "test": 0.8831739284449167
+   },
+   "same": false
+  },
+  {
+   "target": 0.888,
+   "server": {
+    "model": "resnet50",
+    "res": 96,
+    "val": 0.8904761904761905,
+    "fallback": false,
+    "time_ms": 1.68,
+    "test": 0.8831739284449167
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 96,
+    "val": 0.8896233120113717,
+    "fallback": false,
+    "time_ms": 1.68,
+    "test": 0.8831739284449167
+   },
+   "same": true
+  },
+  {
+   "target": 0.889,
+   "server": {
+    "model": "resnet50",
+    "res": 96,
+    "val": 0.8904761904761905,
+    "fallback": false,
+    "time_ms": 1.68,
+    "test": 0.8831739284449167
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 96,
+    "val": 0.8896233120113717,
+    "fallback": false,
+    "time_ms": 1.68,
+    "test": 0.8831739284449167
+   },
+   "same": true
+  },
+  {
+   "target": 0.89,
+   "server": {
+    "model": "resnet50",
+    "res": 96,
+    "val": 0.8904761904761905,
+    "fallback": false,
+    "time_ms": 1.68,
+    "test": 0.8831739284449167
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.9050817341862117,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "same": false
+  },
+  {
+   "target": 0.891,
+   "server": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.905543710021322,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.9050817341862117,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "same": true
+  },
+  {
+   "target": 0.892,
+   "server": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.905543710021322,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.9050817341862117,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "same": true
+  },
+  {
+   "target": 0.893,
+   "server": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.905543710021322,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.9050817341862117,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "same": true
+  },
+  {
+   "target": 0.894,
+   "server": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.905543710021322,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.9050817341862117,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "same": true
+  },
+  {
+   "target": 0.895,
+   "server": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.905543710021322,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.9050817341862117,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "same": true
+  },
+  {
+   "target": 0.896,
+   "server": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.905543710021322,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.9050817341862117,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "same": true
+  },
+  {
+   "target": 0.897,
+   "server": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.905543710021322,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.9050817341862117,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "same": true
+  },
+  {
+   "target": 0.898,
+   "server": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.905543710021322,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.9050817341862117,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "same": true
+  },
+  {
+   "target": 0.899,
+   "server": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.905543710021322,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.9050817341862117,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "same": true
+  },
+  {
+   "target": 0.9,
+   "server": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.905543710021322,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.9050817341862117,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "same": true
+  },
+  {
+   "target": 0.901,
+   "server": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.905543710021322,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.9050817341862117,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "same": true
+  },
+  {
+   "target": 0.902,
+   "server": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.905543710021322,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.9050817341862117,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "same": true
+  },
+  {
+   "target": 0.903,
+   "server": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.905543710021322,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.9050817341862117,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "same": true
+  },
+  {
+   "target": 0.904,
+   "server": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.905543710021322,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.9050817341862117,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "same": true
+  },
+  {
+   "target": 0.905,
+   "server": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.905543710021322,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 112,
+    "val": 0.9050817341862117,
+    "fallback": false,
+    "time_ms": 1.85,
+    "test": 0.898016294721927
+   },
+   "same": true
+  },
+  {
+   "target": 0.906,
+   "server": {
+    "model": "resnet50",
+    "res": 128,
+    "val": 0.9099147121535182,
+    "fallback": false,
+    "time_ms": 2.039,
+    "test": 0.9037725823591923
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 128,
+    "val": 0.9092395167022033,
+    "fallback": false,
+    "time_ms": 2.039,
+    "test": 0.9037725823591923
+   },
+   "same": true
+  },
+  {
+   "target": 0.907,
+   "server": {
+    "model": "resnet50",
+    "res": 128,
+    "val": 0.9099147121535182,
+    "fallback": false,
+    "time_ms": 2.039,
+    "test": 0.9037725823591923
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 128,
+    "val": 0.9092395167022033,
+    "fallback": false,
+    "time_ms": 2.039,
+    "test": 0.9037725823591923
+   },
+   "same": true
+  },
+  {
+   "target": 0.908,
+   "server": {
+    "model": "resnet50",
+    "res": 128,
+    "val": 0.9099147121535182,
+    "fallback": false,
+    "time_ms": 2.039,
+    "test": 0.9037725823591923
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 128,
+    "val": 0.9092395167022033,
+    "fallback": false,
+    "time_ms": 2.039,
+    "test": 0.9037725823591923
+   },
+   "same": true
+  },
+  {
+   "target": 0.909,
+   "server": {
+    "model": "resnet50",
+    "res": 128,
+    "val": 0.9099147121535182,
+    "fallback": false,
+    "time_ms": 2.039,
+    "test": 0.9037725823591923
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 128,
+    "val": 0.9092395167022033,
+    "fallback": false,
+    "time_ms": 2.039,
+    "test": 0.9037725823591923
+   },
+   "same": true
+  },
+  {
+   "target": 0.91,
+   "server": {
+    "model": "resnet50",
+    "res": 144,
+    "val": 0.9168443496801706,
+    "fallback": false,
+    "time_ms": 2.332,
+    "test": 0.9115834218916047
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 144,
+    "val": 0.9165067519545131,
+    "fallback": false,
+    "time_ms": 2.332,
+    "test": 0.9115834218916047
+   },
+   "same": true
+  },
+  {
+   "target": 0.911,
+   "server": {
+    "model": "resnet50",
+    "res": 144,
+    "val": 0.9168443496801706,
+    "fallback": false,
+    "time_ms": 2.332,
+    "test": 0.9115834218916047
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 144,
+    "val": 0.9165067519545131,
+    "fallback": false,
+    "time_ms": 2.332,
+    "test": 0.9115834218916047
+   },
+   "same": true
+  },
+  {
+   "target": 0.912,
+   "server": {
+    "model": "resnet50",
+    "res": 144,
+    "val": 0.9168443496801706,
+    "fallback": false,
+    "time_ms": 2.332,
+    "test": 0.9115834218916047
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 144,
+    "val": 0.9165067519545131,
+    "fallback": false,
+    "time_ms": 2.332,
+    "test": 0.9115834218916047
+   },
+   "same": true
+  },
+  {
+   "target": 0.913,
+   "server": {
+    "model": "resnet50",
+    "res": 144,
+    "val": 0.9168443496801706,
+    "fallback": false,
+    "time_ms": 2.332,
+    "test": 0.9115834218916047
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 144,
+    "val": 0.9165067519545131,
+    "fallback": false,
+    "time_ms": 2.332,
+    "test": 0.9115834218916047
+   },
+   "same": true
+  },
+  {
+   "target": 0.914,
+   "server": {
+    "model": "resnet50",
+    "res": 144,
+    "val": 0.9168443496801706,
+    "fallback": false,
+    "time_ms": 2.332,
+    "test": 0.9115834218916047
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 144,
+    "val": 0.9165067519545131,
+    "fallback": false,
+    "time_ms": 2.332,
+    "test": 0.9115834218916047
+   },
+   "same": true
+  },
+  {
+   "target": 0.915,
+   "server": {
+    "model": "resnet50",
+    "res": 144,
+    "val": 0.9168443496801706,
+    "fallback": false,
+    "time_ms": 2.332,
+    "test": 0.9115834218916047
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 144,
+    "val": 0.9165067519545131,
+    "fallback": false,
+    "time_ms": 2.332,
+    "test": 0.9115834218916047
+   },
+   "same": true
+  },
+  {
+   "target": 0.916,
+   "server": {
+    "model": "resnet50",
+    "res": 144,
+    "val": 0.9168443496801706,
+    "fallback": false,
+    "time_ms": 2.332,
+    "test": 0.9115834218916047
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 144,
+    "val": 0.9165067519545131,
+    "fallback": false,
+    "time_ms": 2.332,
+    "test": 0.9115834218916047
+   },
+   "same": true
+  },
+  {
+   "target": 0.917,
+   "server": {
+    "model": "resnet50",
+    "res": 160,
+    "val": 0.9194740582800285,
+    "fallback": false,
+    "time_ms": 2.592,
+    "test": 0.9122210414452709
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 160,
+    "val": 0.9187455579246624,
+    "fallback": false,
+    "time_ms": 2.592,
+    "test": 0.9122210414452709
+   },
+   "same": true
+  },
+  {
+   "target": 0.918,
+   "server": {
+    "model": "resnet50",
+    "res": 160,
+    "val": 0.9194740582800285,
+    "fallback": false,
+    "time_ms": 2.592,
+    "test": 0.9122210414452709
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 160,
+    "val": 0.9187455579246624,
+    "fallback": false,
+    "time_ms": 2.592,
+    "test": 0.9122210414452709
+   },
+   "same": true
+  },
+  {
+   "target": 0.919,
+   "server": {
+    "model": "resnet50",
+    "res": 160,
+    "val": 0.9194740582800285,
+    "fallback": false,
+    "time_ms": 2.592,
+    "test": 0.9122210414452709
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 176,
+    "val": 0.9214818763326226,
+    "fallback": false,
+    "time_ms": 2.974,
+    "test": 0.9139390719093163
+   },
+   "same": false
+  },
+  {
+   "target": 0.92,
+   "server": {
+    "model": "vit_small",
+    "res": 160,
+    "val": 0.9221570717839375,
+    "fallback": false,
+    "time_ms": 2.809,
+    "test": 0.8707757704569606
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 176,
+    "val": 0.9214818763326226,
+    "fallback": false,
+    "time_ms": 2.974,
+    "test": 0.9139390719093163
+   },
+   "same": false
+  },
+  {
+   "target": 0.921,
+   "server": {
+    "model": "vit_small",
+    "res": 160,
+    "val": 0.9221570717839375,
+    "fallback": false,
+    "time_ms": 2.809,
+    "test": 0.8707757704569606
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 176,
+    "val": 0.9214818763326226,
+    "fallback": false,
+    "time_ms": 2.974,
+    "test": 0.9139390719093163
+   },
+   "same": false
+  },
+  {
+   "target": 0.922,
+   "server": {
+    "model": "vit_small",
+    "res": 160,
+    "val": 0.9221570717839375,
+    "fallback": false,
+    "time_ms": 2.809,
+    "test": 0.8707757704569606
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 224,
+    "val": 0.9302061122956645,
+    "fallback": false,
+    "time_ms": 3.078,
+    "test": 0.921342543393553
+   },
+   "same": false
+  },
+  {
+   "target": 0.923,
+   "server": {
+    "model": "vit_small",
+    "res": 176,
+    "val": 0.9278073916133618,
+    "fallback": false,
+    "time_ms": 3.044,
+    "test": 0.8569252568189868
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 224,
+    "val": 0.9302061122956645,
+    "fallback": false,
+    "time_ms": 3.078,
+    "test": 0.921342543393553
+   },
+   "same": false
+  },
+  {
+   "target": 0.924,
+   "server": {
+    "model": "vit_small",
+    "res": 176,
+    "val": 0.9278073916133618,
+    "fallback": false,
+    "time_ms": 3.044,
+    "test": 0.8569252568189868
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 224,
+    "val": 0.9302061122956645,
+    "fallback": false,
+    "time_ms": 3.078,
+    "test": 0.921342543393553
+   },
+   "same": false
+  },
+  {
+   "target": 0.925,
+   "server": {
+    "model": "vit_small",
+    "res": 176,
+    "val": 0.9278073916133618,
+    "fallback": false,
+    "time_ms": 3.044,
+    "test": 0.8569252568189868
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 224,
+    "val": 0.9302061122956645,
+    "fallback": false,
+    "time_ms": 3.078,
+    "test": 0.921342543393553
+   },
+   "same": false
+  },
+  {
+   "target": 0.926,
+   "server": {
+    "model": "vit_small",
+    "res": 176,
+    "val": 0.9278073916133618,
+    "fallback": false,
+    "time_ms": 3.044,
+    "test": 0.8569252568189868
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 224,
+    "val": 0.9302061122956645,
+    "fallback": false,
+    "time_ms": 3.078,
+    "test": 0.921342543393553
+   },
+   "same": false
+  },
+  {
+   "target": 0.927,
+   "server": {
+    "model": "vit_small",
+    "res": 176,
+    "val": 0.9278073916133618,
+    "fallback": false,
+    "time_ms": 3.044,
+    "test": 0.8569252568189868
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 224,
+    "val": 0.9302061122956645,
+    "fallback": false,
+    "time_ms": 3.078,
+    "test": 0.921342543393553
+   },
+   "same": false
+  },
+  {
+   "target": 0.928,
+   "server": {
+    "model": "resnet50",
+    "res": 224,
+    "val": 0.9306147832267235,
+    "fallback": false,
+    "time_ms": 3.078,
+    "test": 0.921342543393553
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 224,
+    "val": 0.9302061122956645,
+    "fallback": false,
+    "time_ms": 3.078,
+    "test": 0.921342543393553
+   },
+   "same": true
+  },
+  {
+   "target": 0.929,
+   "server": {
+    "model": "resnet50",
+    "res": 224,
+    "val": 0.9306147832267235,
+    "fallback": false,
+    "time_ms": 3.078,
+    "test": 0.921342543393553
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 224,
+    "val": 0.9302061122956645,
+    "fallback": false,
+    "time_ms": 3.078,
+    "test": 0.921342543393553
+   },
+   "same": true
+  },
+  {
+   "target": 0.93,
+   "server": {
+    "model": "resnet50",
+    "res": 224,
+    "val": 0.9306147832267235,
+    "fallback": false,
+    "time_ms": 3.078,
+    "test": 0.921342543393553
+   },
+   "deploy": {
+    "model": "resnet50",
+    "res": 224,
+    "val": 0.9302061122956645,
+    "fallback": false,
+    "time_ms": 3.078,
+    "test": 0.921342543393553
+   },
+   "same": true
+  },
+  {
+   "target": 0.931,
+   "server": {
+    "model": "vit_small",
+    "res": 224,
+    "val": 0.9388948116560056,
+    "fallback": false,
+    "time_ms": 3.578,
+    "test": 0.8800566772936592
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 64,
+    "val": 0.9328725828983163,
+    "fallback": false,
+    "time_ms": 9.402,
+    "test": 0.9307046795412071
+   },
+   "same": false
+  },
+  {
+   "target": 0.932,
+   "server": {
+    "model": "vit_small",
+    "res": 224,
+    "val": 0.9388948116560056,
+    "fallback": false,
+    "time_ms": 3.578,
+    "test": 0.8800566772936592
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 64,
+    "val": 0.9328725828983163,
+    "fallback": false,
+    "time_ms": 9.402,
+    "test": 0.9307046795412071
+   },
+   "same": false
+  },
+  {
+   "target": 0.933,
+   "server": {
+    "model": "vit_small",
+    "res": 224,
+    "val": 0.9388948116560056,
+    "fallback": false,
+    "time_ms": 3.578,
+    "test": 0.8800566772936592
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": false
+  },
+  {
+   "target": 0.934,
+   "server": {
+    "model": "vit_small",
+    "res": 224,
+    "val": 0.9388948116560056,
+    "fallback": false,
+    "time_ms": 3.578,
+    "test": 0.8800566772936592
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": false
+  },
+  {
+   "target": 0.935,
+   "server": {
+    "model": "vit_small",
+    "res": 224,
+    "val": 0.9388948116560056,
+    "fallback": false,
+    "time_ms": 3.578,
+    "test": 0.8800566772936592
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": false
+  },
+  {
+   "target": 0.936,
+   "server": {
+    "model": "vit_small",
+    "res": 224,
+    "val": 0.9388948116560056,
+    "fallback": false,
+    "time_ms": 3.578,
+    "test": 0.8800566772936592
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": false
+  },
+  {
+   "target": 0.937,
+   "server": {
+    "model": "vit_small",
+    "res": 224,
+    "val": 0.9388948116560056,
+    "fallback": false,
+    "time_ms": 3.578,
+    "test": 0.8800566772936592
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": false
+  },
+  {
+   "target": 0.938,
+   "server": {
+    "model": "vit_small",
+    "res": 224,
+    "val": 0.9388948116560056,
+    "fallback": false,
+    "time_ms": 3.578,
+    "test": 0.8800566772936592
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": false
+  },
+  {
+   "target": 0.939,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9662708624365856,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": true
+  },
+  {
+   "target": 0.94,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9662708624365856,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": true
+  },
+  {
+   "target": 0.941,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9662708624365856,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": true
+  },
+  {
+   "target": 0.942,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9662708624365856,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": true
+  },
+  {
+   "target": 0.943,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9662708624365856,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": true
+  },
+  {
+   "target": 0.944,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9662708624365856,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": true
+  },
+  {
+   "target": 0.945,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9662708624365856,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": true
+  },
+  {
+   "target": 0.946,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9662708624365856,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": true
+  },
+  {
+   "target": 0.947,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9662708624365856,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": true
+  },
+  {
+   "target": 0.948,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9662708624365856,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": true
+  },
+  {
+   "target": 0.949,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9662708624365856,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": true
+  },
+  {
+   "target": 0.95,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9662708624365856,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": true
+  },
+  {
+   "target": 0.951,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9662708624365856,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": true
+  },
+  {
+   "target": 0.952,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9662708624365856,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": true
+  },
+  {
+   "target": 0.953,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9662708624365856,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": true
+  },
+  {
+   "target": 0.954,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9662708624365856,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": true
+  },
+  {
+   "target": 0.955,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9662708624365856,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": true
+  },
+  {
+   "target": 0.956,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9662708624365856,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": true
+  },
+  {
+   "target": 0.957,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9662708624365856,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": true
+  },
+  {
+   "target": 0.958,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9662708624365856,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": true
+  },
+  {
+   "target": 0.959,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9662708624365856,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": true
+  },
+  {
+   "target": 0.96,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9662708624365856,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": true
+  },
+  {
+   "target": 0.961,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9662708624365856,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": true
+  },
+  {
+   "target": 0.962,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9662708624365856,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": true
+  },
+  {
+   "target": 0.963,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9662708624365856,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": true
+  },
+  {
+   "target": 0.964,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9662708624365856,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": true
+  },
+  {
+   "target": 0.965,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9662708624365856,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9653334313653408,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "same": true
+  },
+  {
+   "target": 0.966,
+   "server": {
+    "model": "dinov2_l",
+    "res": 144,
+    "val": 0.9662708624365856,
+    "fallback": false,
+    "time_ms": 12.701,
+    "test": 0.9629521052438711
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 160,
+    "val": 0.9668774354826851,
+    "fallback": false,
+    "time_ms": 13.701,
+    "test": 0.9637399684854703
+   },
+   "same": false
+  },
+  {
+   "target": 0.967,
+   "server": {
+    "model": "dinov2_l",
+    "res": 160,
+    "val": 0.968550106609808,
+    "fallback": false,
+    "time_ms": 13.701,
+    "test": 0.9637399684854703
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 176,
+    "val": 0.9713440188221454,
+    "fallback": false,
+    "time_ms": 20.754,
+    "test": 0.9692550111766646
+   },
+   "same": false
+  },
+  {
+   "target": 0.968,
+   "server": {
+    "model": "dinov2_l",
+    "res": 160,
+    "val": 0.968550106609808,
+    "fallback": false,
+    "time_ms": 13.701,
+    "test": 0.9637399684854703
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 176,
+    "val": 0.9713440188221454,
+    "fallback": false,
+    "time_ms": 20.754,
+    "test": 0.9692550111766646
+   },
+   "same": false
+  },
+  {
+   "target": 0.969,
+   "server": {
+    "model": "dinov2_l",
+    "res": 176,
+    "val": 0.9721895448864054,
+    "fallback": false,
+    "time_ms": 20.754,
+    "test": 0.9692550111766646
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 176,
+    "val": 0.9713440188221454,
+    "fallback": false,
+    "time_ms": 20.754,
+    "test": 0.9692550111766646
+   },
+   "same": true
+  },
+  {
+   "target": 0.97,
+   "server": {
+    "model": "dinov2_l",
+    "res": 176,
+    "val": 0.9721895448864054,
+    "fallback": false,
+    "time_ms": 20.754,
+    "test": 0.9692550111766646
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 176,
+    "val": 0.9713440188221454,
+    "fallback": false,
+    "time_ms": 20.754,
+    "test": 0.9692550111766646
+   },
+   "same": true
+  },
+  {
+   "target": 0.971,
+   "server": {
+    "model": "dinov2_l",
+    "res": 176,
+    "val": 0.9721895448864054,
+    "fallback": false,
+    "time_ms": 20.754,
+    "test": 0.9692550111766646
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 176,
+    "val": 0.9713440188221454,
+    "fallback": false,
+    "time_ms": 20.754,
+    "test": 0.9692550111766646
+   },
+   "same": true
+  },
+  {
+   "target": 0.972,
+   "server": {
+    "model": "dinov2_l",
+    "res": 176,
+    "val": 0.9721895448864054,
+    "fallback": false,
+    "time_ms": 20.754,
+    "test": 0.9692550111766646
+   },
+   "deploy": {
+    "model": "dinov3_l",
+    "res": 144,
+    "val": 0.972777736931108,
+    "fallback": false,
+    "time_ms": 24.054,
+    "test": 0.96615852541317
+   },
+   "same": false
+  },
+  {
+   "target": 0.973,
+   "server": {
+    "model": "dinov2_l",
+    "res": 208,
+    "val": 0.9750202191015366,
+    "fallback": false,
+    "time_ms": 24.225,
+    "test": 0.973176004983693
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 208,
+    "val": 0.9742298360414675,
+    "fallback": false,
+    "time_ms": 24.225,
+    "test": 0.973176004983693
+   },
+   "same": true
+  },
+  {
+   "target": 0.974,
+   "server": {
+    "model": "dinov2_l",
+    "res": 208,
+    "val": 0.9750202191015366,
+    "fallback": false,
+    "time_ms": 24.225,
+    "test": 0.973176004983693
+   },
+   "deploy": {
+    "model": "dinov2_l",
+    "res": 208,
+    "val": 0.9742298360414675,
+    "fallback": false,
+    "time_ms": 24.225,
+    "test": 0.973176004983693
+   },
+   "same": true
+  },
+  {
+   "target": 0.975,
+   "server": {
+    "model": "dinov2_l",
+    "res": 208,
+    "val": 0.9750202191015366,
+    "fallback": false,
+    "time_ms": 24.225,
+    "test": 0.973176004983693
+   },
+   "deploy": {
+    "model": "dinov3_l",
+    "res": 192,
+    "val": 0.9751672671127123,
+    "fallback": false,
+    "time_ms": 39.902,
+    "test": 0.9709773168676024
+   },
+   "same": false
+  }
+ ],
+ "server_acc_seeds_by_model": {
+  "mnv4": [
+   42,
+   43,
+   44,
+   45,
+   46,
+   47,
+   48,
+   49,
+   50,
+   51,
+   52,
+   53,
+   54,
+   55,
+   56,
+   57,
+   58,
+   59,
+   60,
+   61,
+   62,
+   63,
+   64,
+   65,
+   66,
+   67,
+   68,
+   69,
+   70,
+   71
+  ],
+  "effb0": [
+   42,
+   43,
+   44,
+   45,
+   46,
+   47,
+   48,
+   49,
+   50,
+   51,
+   52,
+   53,
+   54,
+   55,
+   56,
+   57,
+   58,
+   59,
+   60,
+   61,
+   62,
+   63,
+   64,
+   65,
+   66,
+   67,
+   68,
+   69,
+   70,
+   71
+  ],
+  "resnet50": [
+   42,
+   43,
+   44,
+   45,
+   46,
+   47,
+   48,
+   49,
+   50,
+   51,
+   52,
+   53,
+   54,
+   55,
+   56,
+   57,
+   58,
+   59,
+   60,
+   61,
+   62,
+   63,
+   64,
+   65,
+   66,
+   67,
+   68,
+   69,
+   70,
+   71
+  ],
+  "vit_small": [
+   42,
+   43,
+   44,
+   45,
+   46,
+   47,
+   48,
+   49,
+   50,
+   51,
+   52,
+   53,
+   54,
+   55,
+   56,
+   57,
+   58,
+   59,
+   60,
+   61,
+   62,
+   63,
+   64,
+   65,
+   66,
+   67,
+   68,
+   69,
+   70,
+   71
+  ],
+  "dinov2_l": [
+   43,
+   44,
+   45,
+   46,
+   47,
+   48,
+   49,
+   50,
+   51,
+   52,
+   53,
+   54,
+   55,
+   56,
+   57,
+   58,
+   59,
+   60,
+   61,
+   62,
+   63,
+   64,
+   65,
+   66,
+   67,
+   68,
+   69,
+   70,
+   71
+  ],
+  "dinov3_l": [
+   43,
+   44,
+   45,
+   46,
+   47,
+   48,
+   49,
+   50,
+   51,
+   52,
+   53,
+   54,
+   55,
+   56,
+   57,
+   58,
+   59,
+   60,
+   61,
+   62,
+   63,
+   64,
+   65,
+   66,
+   67,
+   68,
+   69,
+   70,
+   71
+  ]
+ },
+ "server_acc_note": "サーバ FP32 の validation。**配備側 (summary_deploy_val.json) とシード集合を揃えた版**。dinov2_l / dinov3_l は配備側に seed 42 が無いため seeds 43-71 の 29 本で再集計した。mnv4 / effb0 / resnet50 / vit_small は両側とも seed 42-71 の 30 本で整合しているので summary_val.json の値をそのまま複製している"
+}

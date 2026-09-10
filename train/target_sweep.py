@@ -12,8 +12,18 @@
 ⚠️ ViT-L の配備 val は測定中 (`run_vitl_acc_chain_val.sh`)。無い間はサーバ FP32 の val へ
    落とし、**落とした構成に `*` を付けて明示する** (黙って落とさない)。
 
+⭐ `--server-acc` (再レビュー対応) — サーバ側の val をどの JSON から引くか。
+   既定 `results/summary_val.json` は **全モデル 30 シード (42-71)** だが、配備側の
+   ViT-L は **29 シード (43-71)** しか無い。この状態で両者を比べると
+   「演算精度の影響」と「seed 42 を含むか否かの影響」が交絡する。
+   `train/align_server_val.py` が作る `results/summary_val_aligned.json`
+   (ViT-L だけ 29 シードへ揃えた版) を渡すと、シード集合を同一にしたうえで
+   「どちらの精度で選ぶか」だけを変えた比較になる。
+
 usage:
   python3 train/target_sweep.py [--src trt10-maxn] [--step 0.001] [--out results/target_sweep.json]
+  python3 train/target_sweep.py --server-acc results/summary_val_aligned.json \
+      --out results/target_sweep_aligned.json
 """
 import argparse
 import json
@@ -59,14 +69,28 @@ def main():
     ap.add_argument("--hi", type=float, default=0.975)
     ap.add_argument("--tkey", default="e2e_deploy_ms",
                     help="時間軸。配備経路 (既定) かオフライン経路 e2e_ms")
+    ap.add_argument("--server-acc", default=os.path.join(R, "summary_val.json"),
+                    help="サーバ FP32 の val 精度 JSON (既定 results/summary_val.json = 30 シード)。"
+                         "results/summary_val_aligned.json を渡すと ViT-L を配備側と同じ "
+                         "29 シード (43-71) へ揃えた版で選ぶ")
     ap.add_argument("--out", default=os.path.join(R, "target_sweep.json"))
     args = ap.parse_args()
 
+    server_acc_path = args.server_acc
+    if not os.path.isabs(server_acc_path):
+        # リポジトリ相対でも受ける (results/summary_val_aligned.json のように書ける)
+        cand = os.path.join(HERE, server_acc_path)
+        server_acc_path = cand if os.path.exists(cand) else server_acc_path
+    if not os.path.exists(server_acc_path):
+        sys.exit("[abort] --server-acc が見つからない: %s" % args.server_acc)
+
     O.SRC = args.src
+    # 落とし先もサーバ側と同じ JSON にする (配備 val が無い構成のみに効く。
+    # 現状 summary_deploy_val.json は 84 構成すべてを持つので落とし先は使われない)。
     pts, _, has_dep = O.load(select_acc_path=os.path.join(R, "summary_deploy_val.json"),
                              report_acc_path=os.path.join(R, "summary_deploy.json"),
-                             select_fallback_path=os.path.join(R, "summary_val.json"))
-    sv = json.load(open(os.path.join(R, "summary_val.json")))          # サーバ FP32 の val
+                             select_fallback_path=server_acc_path)
+    sv = json.load(open(server_acc_path))                              # サーバ FP32 の val
     dv = json.load(open(os.path.join(R, "summary_deploy_val.json")))   # 配備 FP16 の val
 
     n_dep_models = sorted({m for m in dv["models"]})
@@ -108,10 +132,15 @@ def main():
     out = {"note": "選択規則を val にそろえたうえで、サーバ FP32 と配備 FP16 の "
                    "どちらで選ぶかだけを変えたときの最短構成",
            "src": args.src, "tkey": args.tkey, "step": args.step,
+           "server_acc": os.path.relpath(server_acc_path, HERE),
            "deploy_val_models": n_dep_models,
            "n_target": len(rows), "n_changed": len(changes),
            "changed_fraction": len(changes) / len(rows),
            "spans": spans, "rows": rows}
+    for k, src_k in (("server_acc_seeds_by_model", "seeds_by_model"),
+                     ("server_acc_note", "note")):
+        if sv.get(src_k) is not None:
+            out[k] = sv[src_k]
     json.dump(out, open(args.out, "w"), indent=1, ensure_ascii=False)
 
     print("=== 目標精度ごとの最短構成 (時間軸 %s・%s) ===" % (args.tkey, args.src))

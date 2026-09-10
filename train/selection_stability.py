@@ -23,6 +23,16 @@
    `common_seeds()` のコメント参照) から根拠づけて対応させ、対応が保証できない
    構成があれば止まる。
 
+⭐ 2026-09-10 修正 (査読者の独立再計算と値が合わなかったため):
+   **C(29,k) <= --subsets の k は全列挙する。** 以前は k=1 と k=29 だけを全列挙し、
+   k=2 (C=406)・k=27 (C=406)・k=28 (C=29) は 2,000 本のランダム抽出にしていたので、
+   母集団より多く引いて同じ部分集合を重複して数えており、全列挙での真値からずれていた
+   (例: target 0.93 の k=28 は 0.730 と出ていたが、全列挙の真値は 21/29 = 0.7241)。
+   k=3..26 は C(29,k) > 2,000 なので従来どおりランダム抽出のままである。
+
+⚠️ **k=29 の一致率は定義上 100% である** (部分集合が 1 通りしかなく、それが参照そのもの)。
+   「95% 以上になる最小の k」を読むときは、末端が自己一致で必ず 100% になる点に注意する。
+
 選択規則は optimal_n.py (表 C / 表 D) と同一:
   精度目標 T : val 平均 >= T を満たすうち e2e_deploy_ms 最短 (同値なら低解像度)
   時間予算 B : e2e_deploy_ms <= B のうち val 平均最大 (同値なら短時間 -> 低解像度)
@@ -242,11 +252,15 @@ def main():
     print("\n部分集合の選択を計算中 (k=1..%d) ..." % n_seed)
     for k in range(1, n_seed + 1):
         n_poss = math.comb(n_seed, k)
-        if k == 1:
-            subs = np.arange(n_seed).reshape(-1, 1)          # 全数 (29 通り)
-            mode = "exhaustive"
-        elif k == n_seed:
-            subs = np.arange(n_seed).reshape(1, -1)          # 1 通り
+        # ⭐ 2026-09-10 修正: 部分集合の総数が引く本数以下なら**全列挙**する。
+        #    以前は k=1 と k=29 だけを全列挙し、k=2 (C=406)・k=27 (C=406)・k=28 (C=29) は
+        #    2,000 本のランダム抽出にしていた。母集団より多く引くので**同じ部分集合が
+        #    何度も重複して数えられ**、一致率が「全列挙での真値」からずれる
+        #    (査読者が独立に全列挙すると値が合わない)。
+        #    C(29,k) <= 2000 になるのは k=1(29)・2(406)・27(406)・28(29)・29(1) の 5 つ。
+        #    C(29,3)=3,654 なので k=3..26 は従来どおりランダム抽出のまま。
+        if n_poss <= args.subsets:
+            subs = np.array(list(itertools.combinations(range(n_seed), k)), dtype=int)
             mode = "exhaustive"
         else:
             # 固定 rng で args.subsets 本。1 本の中は非復元 (同じシードを 2 度使わない)。
@@ -293,10 +307,21 @@ def main():
                  "選択とどれだけ一致するか (再レビュー指摘 (2): シード解析を構成選択へ接続する)"),
         "rng_seed": RNG_SEED,
         "n_subsets_per_k": args.subsets,
-        "subset_sampling": ("k=1 と k=29 は全数。2<=k<=28 は numpy default_rng(%d) で "
-                            "%d 本を非復元抽出 (1 本の中で同じシードを 2 度使わない)。"
-                            "C(29,k)<=%d の k では同じ部分集合が重複して引かれうるので "
-                            "n_distinct_subsets を併記する" % (RNG_SEED, args.subsets, args.subsets)),
+        "subset_sampling": ("C(%d,k) <= %d となる k (=1, 2, 27, 28, 29) は **全列挙** "
+                            "(重複なし)。それ以外の k は numpy default_rng(%d) で %d 本を"
+                            "非復元抽出 (1 本の中で同じシードを 2 度使わない)。"
+                            "各 k の実際の本数は n_subsets、異なり数は n_distinct_subsets "
+                            "を見ること" % (n_seed, args.subsets, RNG_SEED, args.subsets)),
+        "subset_sampling_note": ("2026-09-10 修正: 以前は k=2 / 27 / 28 も 2,000 本の"
+                                 "ランダム抽出だったため、母集団 (C=406 / 406 / 29) より"
+                                 "多く引いて同じ部分集合を重複して数えており、全列挙での"
+                                 "真値とずれていた。全列挙へ改めた"),
+        "k_exhaustive": [k for k in range(1, n_seed + 1)
+                         if math.comb(n_seed, k) <= args.subsets],
+        "k95_caveat": ("k=%d は参照そのもの (自己一致) なので一致率は定義上 100%% である。"
+                       "『k 以上のすべてで 95%% 以上』という最小 k を読むときは、"
+                       "k=%d の 100%% が下支えしている点に注意する"
+                       % (n_seed, n_seed)),
         "seeds_used": common,
         "n_seed": n_seed,
         "seeds_excluded": dropped,
@@ -339,6 +364,12 @@ def main():
     summary_rows = []
     for name, _, _ in criteria:
         a = {int(k): v["by_criterion"][name]["agree_rate"] for k, v in per_k.items()}
+        # ⚠️ k=n_seed (=29) は参照そのもの (部分集合が 1 通りしかなく、それが参照の
+        #    シード集合と一致する) なので、agree_rate は**定義上 100%**である。
+        #    したがって「k 以上のすべてで 95% 以上になる最小の k」(k95) は、末端が
+        #    必ず 100% であることに支えられている。k95 を「29 シードあれば安定」と
+        #    読むのは循環論法になるので、読むときは k95 の手前 (k<=28) の値を見ること。
+        #    k95_first (初めて 95% に達する k) も併記しているのはこのためである。
         k95 = next((k for k in sorted(a) if all(a[j] >= 0.95 for j in sorted(a) if j >= k)), None)
         k95_first = next((k for k in sorted(a) if a[k] >= 0.95), None)
         d1 = per_k["1"]["by_criterion"][name]
