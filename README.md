@@ -22,6 +22,7 @@ source URL, SHA-256, group ID and the split membership under both splits.
 | `data/manifest.csv` | **12,519 rows, one per image.** Source, ID, URL, SHA-256, group ID (two rules) and membership in both splits |
 | `data/splits/{train,val,test}.csv` | Image-wise stratified split used for the main experiments (8,761 / 1,876 / 1,882) |
 | `data/splits_group/{train,val,test}.csv` | Group-disjoint split used for the leakage check (8,763 / 1,880 / 1,876) |
+| `data/splits_group_v2/{train,val,test}.csv` | Video-ID-aware sensitivity split (v2 rule; 8,763 / 1,880 / 1,876; no group under either rule straddles) |
 | `data/wikimedia_crawl_urls.json` | Wikimedia Commons URLs in acquisition order, per species (see [Sources](#3-image-sources)) |
 | `results/*.json` | Every aggregate the paper's tables and figures are built from (see [Results](#5-results-files)) |
 | `train/*.py`, `train/*.sh` | Training, evaluation, aggregation, statistics and figure generation |
@@ -118,6 +119,7 @@ source, under two counting conventions (`in_straddling_group_*`, the paper's def
 | `summary_deploy_fp32.json` | The same for the all-FP32 ViT-S/16 engines (14 resolutions x 30 seeds, test and validation) |
 | `vits_fp32_candidacy.json` | Selection under time budgets and accuracy targets recomputed with the FP32 ViT-S/16 configurations added as candidates |
 | `summary_group.json` | Boundary 16 configurations x 30 seeds under the group-disjoint split |
+| `summary_group_v2.json` | Boundary 16 configurations x 30 seeds under the video-ID-aware split (v2 rule) |
 | `final_tables*.json` | Latency, preprocessing and derived tables (`_trt10_maxn` is the current environment) |
 | `optimal_n*.json`, `target_sweep.json` | Configuration selection under time budgets and accuracy targets |
 | `seed_stability.json` | Sign agreement over k-seed subsets |

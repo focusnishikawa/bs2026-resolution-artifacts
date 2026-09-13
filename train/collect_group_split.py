@@ -12,6 +12,11 @@
 入力: results/G_cond{A,B}_s<seed>/<model>_r<res>.json   (eval_sweep.py の出力)
 出力: results/summary_group.json                        (results/summary_v2.json と同構造)
 
+⭐ 群規則 v2 (動画 ID を含む群定義) で作り直した系列は入力・出力とも別物である。
+   --cond-prefix で入力ディレクトリの接頭辞を差し替える (既定 "G_cond" = 従来どおり)。
+     python3 train/collect_group_split.py --cond-prefix G2_cond \
+         --out /work/gfsi/ufsi0002/bs2026-resolution/results/summary_group_v2.json
+
 ⚠️ 生データは HPC にしか無いので **HPC 上で実行する** (--root を指定すれば Mac でも動く)。
 ⚠️ 1 件も読めなければ書き出さない。nan で埋まった JSON を作ると後段が全部壊れる
    (collect_v2.py が同じ事故を起こした経緯がある)。
@@ -38,6 +43,7 @@ BOUNDARY = {
 MODELS = list(BOUNDARY)
 N_BOUNDARY = sum(len(v) for v in BOUNDARY.values())
 PAT = re.compile(r"^(resnet50|dinov2_l|vit_small)_r(\d+)\.json$")
+COND_PREFIX = "G_cond"      # v1 (A-3 本体)。v2 は G2_cond を --cond-prefix で渡す
 
 
 def mean(xs):
@@ -51,9 +57,9 @@ def std(xs):
     return (sum((x - m) ** 2 for x in xs) / (len(xs) - 1)) ** 0.5
 
 
-def load(mode, seed, root):
+def load(mode, seed, root, prefix=COND_PREFIX):
     out = {}
-    d = os.path.join(root, "results", "G_cond%s_s%d" % (mode, seed))
+    d = os.path.join(root, "results", "%s%s_s%d" % (prefix, mode, seed))
     for f in glob.glob(os.path.join(d, "*.json")):
         if not PAT.match(os.path.basename(f)):
             continue
@@ -66,9 +72,9 @@ def load(mode, seed, root):
     return out
 
 
-def find_seeds(root):
+def find_seeds(root, prefix=COND_PREFIX):
     seeds = []
-    for d in glob.glob(os.path.join(root, "results", "G_condB_s*")):
+    for d in glob.glob(os.path.join(root, "results", "%sB_s*" % prefix)):
         m = re.search(r"_s(\d+)$", d)
         if m:
             seeds.append(int(m.group(1)))
@@ -83,20 +89,24 @@ def main():
     p.add_argument("--no-write", action="store_true", dest="no_write")
     p.add_argument("--compare", default=None,
                    help="通常分割の集計 (既定 <root>/results/summary_v2.json)")
+    p.add_argument("--cond-prefix", dest="cond_prefix", default=COND_PREFIX,
+                   help="入力ディレクトリの接頭辞。既定 %s (v1)。"
+                        "群規則 v2 の系列は G2_cond" % COND_PREFIX)
     args = p.parse_args()
 
-    seeds_all = find_seeds(args.root)
+    seeds_all = find_seeds(args.root, args.cond_prefix)
     if not seeds_all:
-        sys.exit("[中断] results/G_condB_s* が 1 つも無い: %s\n"
-                 "        本スクリプトは生データのある HPC 上で実行すること。" % args.root)
+        sys.exit("[中断] results/%sB_s* が 1 つも無い: %s\n"
+                 "        本スクリプトは生データのある HPC 上で実行すること。"
+                 % (args.cond_prefix, args.root))
 
     # ⚠️ 条件 B が 16 構成そろった seed だけを平均に使う。中途半端な seed を混ぜると
     #    水準ごとに母数が変わり、比較そのものが壊れる (collect_v2.py と同じ方針)。
     data = {"A": {}, "B": {}}
     seeds, partial = [], []
     for s in seeds_all:
-        b = load("B", s, args.root)
-        a = load("A", s, args.root)
+        b = load("B", s, args.root, args.cond_prefix)
+        a = load("A", s, args.root, args.cond_prefix)
         data["B"][s], data["A"][s] = b, a
         if len(b) >= N_BOUNDARY:
             seeds.append(s)
