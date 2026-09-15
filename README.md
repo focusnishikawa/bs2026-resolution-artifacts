@@ -236,5 +236,12 @@ Version DOIs: v1.0.0 (repository archive) is 10.5281/zenodo.22697996; **v1.0.1**
 10.5281/zenodo.22698141 and additionally carries `predictions_per_image.tar.gz`
 (240 MB, 5,824 per-image prediction CSVs).
 
-The accompanying paper is under submission; this section will be updated with its DOI on
-publication.
+The accompanying English preprint is available on arXiv:
+
+> Nishikawa, T. (2026). *What Input Resolution Is Required for Bird Species Identification,
+> and What Is Its Latency Cost on an Edge Device? A Study of 14 Input Resolutions and Six
+> Architectures with On-Device Measurements*. arXiv:2609.14247.
+> https://arxiv.org/abs/2609.14247
+
+A Japanese-language companion paper covering the evaluation-setup findings is under
+submission to the IPSJ Journal; this section will be updated with its DOI on publication.
