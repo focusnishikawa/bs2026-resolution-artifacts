@@ -1,5 +1,9 @@
 # bs2026-resolution — reproducibility artifacts
 
+> **This repository is archived (read-only).** Its contents and full history were merged on 2026-11-04 into
+> [focusnishikawa/bs2026-project](https://github.com/focusnishikawa/bs2026-project) under `papers/bs2026-resolution-artifacts/`.
+> The release assets and the Zenodo DOIs listed below remain valid and unchanged.
+
 Data manifests, aggregated results and analysis code for the study
 **"Which input resolution gives high identification accuracy at the shortest processing time,
 and what does the evaluation setup change about that answer?"**
